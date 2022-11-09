@@ -10,7 +10,7 @@ type Props = {
 function User({ user }: Props) {
   return (
     <div>
-      <Video uid={user.uid} videoTracks={user.videoTrack} />
+      <Video uid={user.uid} videoTrack={user.videoTrack} />
     </div>
   );
 }

@@ -3,7 +3,12 @@ import Client from './components/Client';
 import Controls from './components/Controls';
 import User from './components/User';
 
-type Props = {};
+type Props = {
+  users: [];
+  tracks: [];
+  setInCall: (inCall: boolean) => void;
+  setStart: (start: boolean) => void;
+};
 
 // if we had chat system as well, we can import it here
 

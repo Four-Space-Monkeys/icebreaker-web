@@ -1,9 +1,13 @@
 import React from 'react';
 import Video from './Video';
 
-type Props = {};
+type Props = {
+  tracks: any[];
+};
 
 function Client({ tracks }: Props) {
+  if (tracks.length <= 1) return <div>No Client</div>;
+
   return (
     <div>
       <div>Render Client Here!</div>

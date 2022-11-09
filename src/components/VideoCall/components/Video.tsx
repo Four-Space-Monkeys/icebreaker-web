@@ -1,7 +1,10 @@
 import React from 'react';
 import { AgoraVideoPlayer } from 'agora-rtc-react';
 
-type Props = {};
+type Props = {
+  uid: string;
+  videoTrack: any;
+};
 
 function Video({ uid, videoTrack }: Props) {
   return (

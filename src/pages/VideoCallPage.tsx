@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import VideoCall from '../components/VideoCall/index';
 
 type Props = {
   users: [];
   tracks: [];
+  setStart: (start: boolean) => void;
+  setInCall: (inCall: boolean) => void;
 };
 // entry point for the video call
-function VideoCallPage({ users, tracks }: Props) {
-  const [inCall, setInCall] = useState(false);
-  const [start, setStart] = useState(false);
+function VideoCallPage({ users, tracks, setStart, setInCall }: Props) {
   // const [gridSpacing, setGridSpacing] = useState(12);
   // user should be able to leave the video call
   // and be redirected to the home page
