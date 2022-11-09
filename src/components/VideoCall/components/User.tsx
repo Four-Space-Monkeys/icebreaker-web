@@ -2,15 +2,12 @@ import React from 'react';
 import Video from './Video';
 
 type Props = {
-  user: {
-    uid: string;
-    videoTrack: any;
-  };
+  videoTrack: any;
 };
-function User({ user }: Props) {
+function User({ videoTrack }: Props) {
   return (
     <div>
-      <Video uid={user.uid} videoTrack={user.videoTrack} />
+      <Video videoTrack={videoTrack} />
     </div>
   );
 }

@@ -10,8 +10,7 @@ type Props = {
   setStart: (start: boolean) => void;
 };
 
-// if we had chat system as well, we can import it here
-
+// we can add chat here as well
 function VideoCall({ users, tracks, setInCall, setStart }: Props) {
   // temp state, will be replaced with redux or context
 
@@ -20,7 +19,12 @@ function VideoCall({ users, tracks, setInCall, setStart }: Props) {
       <h2>VideoCall</h2>
       <div id="video-ctn">
         <Client tracks={tracks} />
-        {users.length > 0 ? users.map((user) => <User user={user} />) : null}
+        {/* There will only be one match at all times, but I'll keep it as a list here for now */}
+        {users.length > 0
+          ? users.map((user) => (
+              <User key={user.uid} videoTrack={user.videoTrack} />
+            ))
+          : null}
       </div>
       <Controls tracks={tracks} setStart={setStart} setInCall={setInCall} />
     </div>

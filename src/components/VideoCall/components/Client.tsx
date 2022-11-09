@@ -11,7 +11,7 @@ function Client({ tracks }: Props) {
   return (
     <div>
       <div>Render Client Here!</div>
-      <Video uid="client" videoTrack={tracks[1]} />
+      <Video videoTrack={tracks[1]} />
     </div>
   );
 }
