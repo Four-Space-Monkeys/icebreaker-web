@@ -6,7 +6,7 @@ import User from './components/User';
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column' as 'column',
     alignItems: 'center',
     justifyContent: 'center',
     height: '100vh',
@@ -20,7 +20,6 @@ const styles = {
     zIndex: 1,
     width: '100%',
   },
-
 };
 
 interface IUser {

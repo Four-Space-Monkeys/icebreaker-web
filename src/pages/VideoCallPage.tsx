@@ -28,7 +28,7 @@ function VideoCallPage({
     // setGridSpacing(Math.max(Math.floor(12 / (users?.length || 0 + 1)), 4));
   }, [users, tracks]);
 
-  if (users.length === 0) return <div>Loading Page Here...</div>;
+  // if (users.length === 0) return <div>Loading Page Here...</div>;
 
   return (
     <VideoCall

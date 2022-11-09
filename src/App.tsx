@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import VideoCallPage from './components/VideoCall';
+import Home from './pages/Home';
+import VideoCallPage from './pages/VideoCallPage';
 
 function App() {
-  const [inCall, setInCall] = useState<boolean>(false);
-  const [start, setStart] = useState<boolean>(false);
-  return (
+  const [inCall, setInCall] = useState(false);
+  const [start, setStart] = useState(false);
+
+  return !(inCall && start) ? (
     <VideoCallPage
       users={[]}
       tracks={[]}
       setStart={setStart}
       setInCall={setInCall}
     />
+  ) : (
+    <Home />
   );
 }
 
