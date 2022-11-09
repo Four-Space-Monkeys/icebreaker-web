@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { } from 'react';
 
 type Props = {
-  tracks: [];
+  tracks: any[];
   setInCall: (inCall: boolean) => void;
   setStart: (start: boolean) => void;
 };

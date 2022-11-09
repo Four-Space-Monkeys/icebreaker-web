@@ -3,15 +3,22 @@ import Client from './components/Client';
 import Controls from './components/Controls';
 import User from './components/User';
 
-type Props = {
-  users: [];
-  tracks: [];
-  setInCall: (inCall: boolean) => void;
+interface IUser {
+  uid: number;
+  videoTrack: any;
+}
+
+interface Props {
+  users: IUser[];
+  tracks: any[];
   setStart: (start: boolean) => void;
-};
+  setInCall: (inCall: boolean) => void;
+}
 
 // we can add chat here as well
-function VideoCall({ users, tracks, setInCall, setStart }: Props) {
+function VideoCall({
+  users, tracks, setInCall, setStart,
+}: Props) {
   // temp state, will be replaced with redux or context
 
   return (
@@ -22,8 +29,8 @@ function VideoCall({ users, tracks, setInCall, setStart }: Props) {
         {/* There will only be one match at all times, but I'll keep it as a list here for now */}
         {users.length > 0
           ? users.map((user) => (
-              <User key={user.uid} videoTrack={user.videoTrack} />
-            ))
+            <User key={user.uid} videoTrack={user.videoTrack} />
+          ))
           : null}
       </div>
       <Controls tracks={tracks} setStart={setStart} setInCall={setInCall} />
