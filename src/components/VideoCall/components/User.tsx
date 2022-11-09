@@ -1,9 +1,9 @@
 import React from 'react';
 import Video from './Video';
 
-type Props = {
+interface Props {
   videoTrack: any;
-};
+}
 function User({ videoTrack }: Props) {
   return (
     <div>

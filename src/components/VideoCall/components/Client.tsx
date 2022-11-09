@@ -1,17 +1,23 @@
 import React from 'react';
 import Video from './Video';
 
-type Props = {
+interface Props {
   tracks: any[];
+}
+
+const styles = {
+  client: {
+    flex: 1,
+    backgroundColor: 'black',
+    color: 'white',
+    width: '100%',
+  },
 };
 
 function Client({ tracks }: Props) {
-  if (tracks.length <= 1) return <div>No Client</div>;
-
   return (
-    <div>
-      <div>Render Client Here!</div>
-      <Video videoTrack={tracks[1]} />
+    <div style={styles.client}>
+      {(tracks.length <= 1) ? <div>No Client View</div> : <Video videoTrack={tracks[1]} />}
     </div>
   );
 }
