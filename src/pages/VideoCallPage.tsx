@@ -8,17 +8,7 @@ import {
   channelName,
 } from '../utils/settings';
 
-interface Props {
-  setInCall: (inCall: boolean) => void;
-}
-// entry point for the video call
-// make any fetches here
-// we can show a loading page until there is a match.
-// User can minimize the page until there is a match
-
-function VideoCallPage({
-  setInCall,
-}: Props) {
+function VideoCallPage({ setInCall }: { setInCall: (inCall: boolean) => void }) {
   const [users, setUsers] = useState<IAgoraRTCRemoteUser[]>([]);
   const [start, setStart] = useState(false);
   const client = useClient();
@@ -43,12 +33,12 @@ function VideoCallPage({
         if (mediaType === 'audio' && user.audioTrack) user.audioTrack.stop();
 
         if (mediaType === 'video') {
-          setUsers((prevUsers) => prevUsers.filter((u: IAgoraRTCRemoteUser) => u.uid !== user.uid));
+          setUsers((prevUsers) => prevUsers.filter((u) => u.uid !== user.uid));
         }
       });
 
       client.on('user-left', (user) => {
-        setUsers((prevUsers) => prevUsers.filter((u: IAgoraRTCRemoteUser) => u.uid !== user.uid));
+        setUsers((prevUsers) => prevUsers.filter((u) => u.uid !== user.uid));
       });
 
       try {
