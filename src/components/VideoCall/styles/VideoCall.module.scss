@@ -1,0 +1,19 @@
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
+    outline: 10px solid black;
+    margin: 0 auto;
+}
+
+.videoTrack {
+  flex: 1;
+  outline: 1px solid red;
+  background-color: skyblue;
+  width: 100%;
+}

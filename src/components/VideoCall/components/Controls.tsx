@@ -15,8 +15,8 @@ const styles = {
 interface IControlsProps {
   audioTrack: IMicrophoneAudioTrack;
   videoTrack: ICameraVideoTrack;
-  setInCall: (inCall: boolean) => void;
-  setStart: (start: boolean) => void;
+  setStart: React.Dispatch<React.SetStateAction<boolean>>;
+  setInCall: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Controls({

@@ -2,15 +2,20 @@ import { IAgoraRTCRemoteUser } from 'agora-rtc-react';
 import React, { useEffect, useState } from 'react';
 import VideoCall from '../components/VideoCall/index';
 import {
-  config,
+  appId,
+  token,
+  channelName,
   useClient,
   useMicrophoneAndCameraTracks,
-  channelName,
 } from '../utils/settings';
 
-function VideoCallPage({ setInCall }: { setInCall: (inCall: boolean) => void }) {
+function VideoCallPage({
+  setInCall,
+}: {
+  setInCall: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [users, setUsers] = useState<IAgoraRTCRemoteUser[]>([]);
-  const [start, setStart] = useState(false);
+  const [start, setStart] = useState<boolean>(false);
   const client = useClient();
   const { ready, tracks } = useMicrophoneAndCameraTracks();
 
@@ -20,7 +25,7 @@ function VideoCallPage({ setInCall }: { setInCall: (inCall: boolean) => void }) 
         'user-published',
         async (user: IAgoraRTCRemoteUser, mediaType) => {
           await client.subscribe(user, mediaType);
-          if (mediaType === 'video') setUsers((prevUsers) => [...prevUsers, user]);
+          if (mediaType === 'video') { setUsers((prevUsers) => [...prevUsers, user]); }
 
           if (mediaType === 'audio') {
             if (!user.audioTrack) throw new Error('user.audioTrack is null');
@@ -42,7 +47,7 @@ function VideoCallPage({ setInCall }: { setInCall: (inCall: boolean) => void }) 
       });
 
       try {
-        await client.join(config.appId, name, config.token, null);
+        await client.join(appId, name, token, null);
       } catch (err) {
         console.log(err);
       }
