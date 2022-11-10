@@ -1,22 +1,13 @@
 import React, { useState } from 'react';
 import { ICameraVideoTrack, IMicrophoneAudioTrack } from 'agora-rtc-react';
 import { useClient } from '../../../utils/settings';
+import styles from '../styles/VideoCall.module.scss';
 
-const styles = {
-  controlsContainer: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '10px',
-    padding: '10px',
-    background: 'grey',
-  },
-};
 interface IControlsProps {
   audioTrack: IMicrophoneAudioTrack;
   videoTrack: ICameraVideoTrack;
-  setInCall: (inCall: boolean) => void;
-  setStart: (start: boolean) => void;
+  setStart: React.Dispatch<React.SetStateAction<boolean>>;
+  setInCall: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Controls({
@@ -37,6 +28,10 @@ function Controls({
     }
   };
 
+  const switchChannel = async () => {
+    // if use wants to join another channel
+  };
+
   const leaveChannel = async () => {
     await client.leave();
     client.removeAllListeners();
@@ -46,7 +41,7 @@ function Controls({
     setInCall(false);
   };
   return (
-    <div style={styles.controlsContainer}>
+    <div className={styles.controlsCtn}>
       <div>
         <button type="button" onClick={() => mute('audio')}>
           {trackState.audio ? <div>MicOn</div> : <div>MicOff</div>}
