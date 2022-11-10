@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { ICameraVideoTrack, IMicrophoneAudioTrack } from 'agora-rtc-react';
-import MicIcon from '@material-ui/icons/Mic';
-import MicOffIcon from '@material-ui/icons/MicOff';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import VideocamOffIcon from '@material-ui/icons/VideocamOff';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useClient } from '../settings';
+import { useClient } from '../../../utils/settings';
 
+const styles = {
+  controlsContainer: {
+    display: 'flex',
+    justifyContent: 'end',
+    gap: '10px',
+    padding: '10px',
+  },
+};
 interface IControlsProps {
   audioTrack: IMicrophoneAudioTrack;
   videoTrack: ICameraVideoTrack;
@@ -17,23 +20,17 @@ interface IControlsProps {
 function Controls({
   audioTrack, videoTrack, setStart, setInCall,
 }: IControlsProps) {
-  return <div>Controls</div>;
-}
-
-export default Controls;
-
-export default function Controls({ tracks, setStart, setInCall }) {
   const client = useClient();
   const [trackState, setTrackState] = useState({ video: true, audio: true });
 
-  const mute = async (type) => {
+  const mute = async (type: string) => {
     if (type === 'audio') {
-      await tracks[0].setEnabled(!trackState.audio);
+      await audioTrack.setEnabled(!trackState.audio);
       setTrackState((ps) => ({ ...ps, audio: !ps.audio }));
     }
 
     if (type === 'video') {
-      await tracks[1].setEnabled(!trackState.video);
+      await videoTrack.setEnabled(!trackState.video);
       setTrackState((ps) => ({ ...ps, video: !ps.video }));
     }
   };
@@ -41,52 +38,31 @@ export default function Controls({ tracks, setStart, setInCall }) {
   const leaveChannel = async () => {
     await client.leave();
     client.removeAllListeners();
-    tracks[0].close();
-    tracks[1].close();
+    audioTrack.close();
+    videoTrack.close();
     setStart(false);
     setInCall(false);
   };
   return (
-    <Grid
-      container
-      spacing={2}
-      alignItems="center"
-      style={{
-        display: 'flex',
-        justifyContent: 'end',
-        gap: '10px',
-        padding: '10px',
-      }}
-    >
-      <Grid item>
-        <Button
-          variant="contained"
-          color={trackState.audio ? 'primary' : 'secondary'}
-          onClick={() => mute('audio')}
-        >
-          {trackState.audio ? <MicIcon /> : <MicOffIcon />}
-        </Button>
-      </Grid>
-      <Grid item>
-        <Button
-          variant="contained"
-          color={trackState.video ? 'primary' : 'secondary'}
-          onClick={() => mute('video')}
-        >
-          {trackState.video ? <VideocamIcon /> : <VideocamOffIcon />}
-        </Button>
-      </Grid>
-      <Grid item>
-        <Button
-          variant="contained"
-          color="default"
-          onClick={() => leaveChannel()}
-        >
+    <div style={styles.controlsContainer}>
+      <div>
+        <button type="button" onClick={() => mute('audio')}>
+          {trackState.audio ? <div>MicOn</div> : <div>MicOff</div>}
+        </button>
+      </div>
+      <div>
+        <button type="button" onClick={() => mute('video')}>
+          {trackState.video ? <div>VidOn</div> : <div>VidOff</div>}
+        </button>
+      </div>
+      <div>
+        <button type="button" onClick={() => leaveChannel()}>
           Leave
-          {' '}
-          <ExitToAppIcon />
-        </Button>
-      </Grid>
-    </Grid>
+          <div>ExitIcon</div>
+        </button>
+      </div>
+    </div>
   );
 }
+
+export default Controls;
