@@ -1,5 +1,5 @@
-import React from 'react';
-import Client from './components/Client';
+import React, { useEffect } from 'react';
+import { IAgoraRTCRemoteUser, ICameraVideoTrack, IMicrophoneAudioTrack } from 'agora-rtc-react';
 import Controls from './components/Controls';
 import User from './components/User';
 
@@ -22,37 +22,45 @@ const styles = {
   },
 };
 
-interface IUser {
-  uid: number;
-  videoTrack: any;
-}
-
-interface Props {
-  users: IUser[];
-  tracks: any[];
+interface IVideoCallProps {
+  users: IAgoraRTCRemoteUser[];
+  audioTrack: IMicrophoneAudioTrack;
+  videoTrack: ICameraVideoTrack;
   setStart: (start: boolean) => void;
   setInCall: (inCall: boolean) => void;
 }
-
+//
 // we can add chat here as well
 function VideoCall({
-  users, tracks, setInCall, setStart,
-}: Props) {
-  // temp state, will be replaced with redux or context
+  users,
+  audioTrack,
+  videoTrack,
+  setInCall,
+  setStart,
+}: IVideoCallProps) {
+  useEffect(() => {
+    // setGridSpacing(Math.max(Math.floor(12 / (users?.length || 0 + 1)), 4));
+  }, [users, audioTrack, videoTrack]);
 
   return (
     <div>
       <h2>VideoCall</h2>
       <div id="video-ctn" style={styles.container}>
-        <Client tracks={tracks} />
-        {/* There will only be one match at all times, but I'll keep it as a list here for now */}
-        {users.length > 0
-          ? users.map((user) => (
+        {!videoTrack ? <User videoTrack={videoTrack} /> : <div style={styles['no-user']}> No Client </div> }
+        {users.length > 0 ? (
+          users.map((user) => (
             <User key={user.uid} videoTrack={user.videoTrack} />
           ))
-          : <div style={styles['no-user']}> No User </div>}
+        ) : (
+          <div style={styles['no-user']}> No User </div>
+        )}
       </div>
-      <Controls tracks={tracks} setStart={setStart} setInCall={setInCall} />
+      <Controls
+        audioTrack={audioTrack}
+        videoTrack={videoTrack}
+        setStart={setStart}
+        setInCall={setInCall}
+      />
     </div>
   );
 }

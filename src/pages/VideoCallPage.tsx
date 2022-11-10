@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import { IAgoraRTCRemoteUser } from 'agora-rtc-react';
+import React, { useEffect, useState } from 'react';
 import VideoCall from '../components/VideoCall/index';
-
-interface IUser {
-  uid: number;
-  videoTrack: any;
-}
+import {
+  config,
+  useClient,
+  useMicrophoneAndCameraTracks,
+  channelName,
+} from '../utils/settings';
 
 interface Props {
-  users: IUser[];
-  tracks: any[];
-  setStart: (start: boolean) => void;
   setInCall: (inCall: boolean) => void;
 }
 // entry point for the video call
@@ -18,22 +17,66 @@ interface Props {
 // User can minimize the page until there is a match
 
 function VideoCallPage({
-  users, tracks, setStart, setInCall,
+  setInCall,
 }: Props) {
-  // const [gridSpacing, setGridSpacing] = useState(12);
-  // user should be able to leave the video call
-  // also change rooms eventually
-  // and be redirected to the home page
-  useEffect(() => {
-    // setGridSpacing(Math.max(Math.floor(12 / (users?.length || 0 + 1)), 4));
-  }, [users, tracks]);
+  const [users, setUsers] = useState<IAgoraRTCRemoteUser[]>([]);
+  const [start, setStart] = useState(false);
+  const client = useClient();
+  const { ready, tracks } = useMicrophoneAndCameraTracks();
 
-  // if (users.length === 0) return <div>Loading Page Here...</div>;
+  useEffect(() => {
+    const init = async (name: string) => {
+      client.on(
+        'user-published',
+        async (user: IAgoraRTCRemoteUser, mediaType) => {
+          await client.subscribe(user, mediaType);
+          if (mediaType === 'video') setUsers((prevUsers) => [...prevUsers, user]);
+
+          if (mediaType === 'audio') {
+            if (!user.audioTrack) throw new Error('user.audioTrack is null');
+
+            user.audioTrack.play();
+          }
+        },
+      );
+      client.on('user-unpublished', (user, mediaType) => {
+        if (mediaType === 'audio' && user.audioTrack) user.audioTrack.stop();
+
+        if (mediaType === 'video') {
+          setUsers((prevUsers) => prevUsers.filter((u: IAgoraRTCRemoteUser) => u.uid !== user.uid));
+        }
+      });
+
+      client.on('user-left', (user) => {
+        setUsers((prevUsers) => prevUsers.filter((u: IAgoraRTCRemoteUser) => u.uid !== user.uid));
+      });
+
+      try {
+        await client.join(config.appId, name, config.token, null);
+      } catch (err) {
+        console.log(err);
+      }
+      if (tracks) await client.publish([tracks[0], tracks[1]]);
+      setStart(true);
+    };
+    if (ready && tracks) {
+      try {
+        init(channelName);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channelName, client, ready, tracks]);
+
+  if (!tracks || tracks.length < 2) return <div>Loading Page Here...</div>;
 
   return (
     <VideoCall
       users={users}
-      tracks={tracks}
+      audioTrack={tracks[0]}
+      videoTrack={tracks[1]}
       setInCall={setInCall}
       setStart={setStart}
     />

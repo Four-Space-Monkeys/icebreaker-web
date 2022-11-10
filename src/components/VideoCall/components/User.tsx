@@ -1,10 +1,10 @@
 import React from 'react';
 import Video from './Video';
 
-interface Props {
+interface IUserProps {
   videoTrack: any;
 }
-function User({ videoTrack }: Props) {
+function User({ videoTrack }: IUserProps) {
   return (
     <div>
       <Video videoTrack={videoTrack} />

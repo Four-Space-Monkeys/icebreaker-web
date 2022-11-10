@@ -1,11 +1,11 @@
 import React from 'react';
 import { AgoraVideoPlayer } from 'agora-rtc-react';
 
-interface Props {
+interface IVideoProps {
   videoTrack: any;
 }
 
-function Video({ videoTrack }: Props) {
+function Video({ videoTrack }: IVideoProps) {
   return (
     <AgoraVideoPlayer
       videoTrack={videoTrack}

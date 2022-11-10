@@ -4,13 +4,9 @@ import VideoCallPage from './pages/VideoCallPage';
 
 function App() {
   const [inCall, setInCall] = useState(false);
-  const [start, setStart] = useState(false);
 
-  return !(inCall && start) ? (
+  return !(inCall) ? (
     <VideoCallPage
-      users={[]}
-      tracks={[]}
-      setStart={setStart}
       setInCall={setInCall}
     />
   ) : (
