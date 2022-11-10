@@ -28,7 +28,7 @@ function VideoCall({
     <div className={styles.container}>
       <h2>VideoCall</h2>
       <div id="video-ctn" className={styles.container}>
-        {!videoTrack ? (
+        {videoTrack ? (
           <User videoTrack={videoTrack} />
         ) : (
           <div className={styles.videoTrack}> No Client </div>

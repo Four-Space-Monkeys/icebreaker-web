@@ -9,7 +9,7 @@ function Video({ videoTrack }: IVideoProps) {
   return (
     <AgoraVideoPlayer
       videoTrack={videoTrack}
-      style={{ height: '100%', width: '100%' }}
+      style={{ height: '500px', width: '500px' }}
     />
   );
 }
