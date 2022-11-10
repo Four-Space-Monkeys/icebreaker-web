@@ -4,26 +4,6 @@ import Controls from './components/Controls';
 import User from './components/User';
 import styles from './styles/VideoCall.module.scss';
 
-// const styles = {
-//   container: {
-//     display: 'flex',
-//     flexDirection: 'column' as 'column',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     height: '100vh',
-//     width: '100%',
-//     maxWidth: '800px',
-//     outline: '10px solid black',
-//     margin: '0 auto',
-//   },
-//   'no-user': {
-//     flex: 1,
-//     backgroundColor: 'skyblue',
-//     zIndex: 1,
-//     width: '100%',
-//   },
-// };
-
 interface IVideoCallProps {
   users: IAgoraRTCRemoteUser[];
   audioTrack: IMicrophoneAudioTrack;
