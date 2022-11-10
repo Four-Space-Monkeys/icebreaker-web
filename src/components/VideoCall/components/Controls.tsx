@@ -4,10 +4,12 @@ import { useClient } from '../../../utils/settings';
 
 const styles = {
   controlsContainer: {
+    width: '100%',
     display: 'flex',
-    justifyContent: 'end',
+    justifyContent: 'center',
     gap: '10px',
     padding: '10px',
+    background: 'grey',
   },
 };
 interface IControlsProps {

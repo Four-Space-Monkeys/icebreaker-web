@@ -13,6 +13,7 @@ const styles = {
     width: '100%',
     maxWidth: '800px',
     outline: '10px solid black',
+    margin: '0 auto',
   },
   'no-user': {
     flex: 1,
@@ -43,10 +44,14 @@ function VideoCall({
   }, [users, audioTrack, videoTrack]);
 
   return (
-    <div>
+    <div style={styles.container}>
       <h2>VideoCall</h2>
       <div id="video-ctn" style={styles.container}>
-        {!videoTrack ? <User videoTrack={videoTrack} /> : <div style={styles['no-user']}> No Client </div> }
+        {!videoTrack ? (
+          <User videoTrack={videoTrack} />
+        ) : (
+          <div style={styles['no-user']}> No Client </div>
+        )}
         {users.length > 0 ? (
           users.map((user) => (
             <User key={user.uid} videoTrack={user.videoTrack} />
