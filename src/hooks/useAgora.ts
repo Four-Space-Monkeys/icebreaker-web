@@ -57,21 +57,11 @@ const useAgora = (uid: number, channelName: string, token: string) => {
     }
   }, [channelName, client, ready, token, tracks, uid]);
 
-  if (tracks) {
-    return {
-      start,
-      setStart,
-      audioTrack: tracks[0],
-      videoTrack: tracks[1],
-      users,
-    };
-  }
-
   return {
     start,
     setStart,
-    audioTrack: null,
-    videoTrack: null,
+    audioTrack: tracks ? tracks[0] : null,
+    videoTrack: tracks ? tracks[1] : null,
     users,
   };
 };
