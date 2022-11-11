@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { io } from 'socket.io-client';
+import { RoomInfo } from '../types';
 
 function enterQueue(uid: string, onMatchCallback: Function) {
   const socket = io('http://localhost:7777/');
@@ -11,17 +12,26 @@ function enterQueue(uid: string, onMatchCallback: Function) {
   });
 }
 
-function Home() {
-  const [uid, setUid] = useState('');
+function Home({
+  uid,
+  setUid,
+  setRoomInfo,
+  setInCall,
+}: {
+  uid: undefined | number;
+  setUid: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setRoomInfo: React.Dispatch<React.SetStateAction<RoomInfo | undefined>>;
+  setInCall: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [inQueue, setInQueue] = useState(false);
 
   return (
     <div>
-      {/* temporary input for uid until it gets passed as prop from login */}
+      {/* temporary input for uid until it gets passed from login */}
       <input
         type="text"
-        onChange={(e) => setUid(e.target.value)}
-        value={uid}
+        onChange={(e) => setUid(Number(e.target.value))}
+        value={uid || ''}
         placeholder="set unique user id"
       />
       <button
@@ -30,10 +40,10 @@ function Home() {
         onClick={() => {
           if (!uid) return;
           setInQueue(true);
-          enterQueue(uid, (matchedUid: string) => {
+          enterQueue(uid.toString(), (matchInfo: string) => {
             setInQueue(false);
-            console.log(`matched with ${matchedUid}`); // eslint-disable-line no-console
-            // whatever is supposed to happen after a match is found
+            setRoomInfo(JSON.parse(matchInfo));
+            setInCall(true);
           });
         }}
       >

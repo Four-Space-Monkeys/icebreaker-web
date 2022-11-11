@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react';
 import { useClient, useMicrophoneAndCameraTracks, appId } from '../utils/settings';
 
 // custom hook for agora listener
-const useAgora = (channelName: string, token: string) => {
+const useAgora = (uid: number, channelName: string, token: string) => {
   const client = useClient();
   const { ready, tracks } = useMicrophoneAndCameraTracks();
   const [users, setUsers] = useState<IAgoraRTCRemoteUser[]>([]);
   const [start, setStart] = useState<boolean>(false);
 
   useEffect(() => {
-    const init = async (name: string) => {
+    const init = async () => {
       client.on(
         'user-published',
         async (user: IAgoraRTCRemoteUser, mediaType) => {
@@ -25,6 +25,7 @@ const useAgora = (channelName: string, token: string) => {
           }
         },
       );
+
       client.on('user-unpublished', (user, mediaType) => {
         if (mediaType === 'audio' && user.audioTrack) user.audioTrack.stop();
 
@@ -38,23 +39,23 @@ const useAgora = (channelName: string, token: string) => {
       });
 
       try {
-        await client.join(appId, name, token, null);
+        await client.join(appId, channelName, token, uid);
+        if (tracks) await client.publish([tracks[0], tracks[1]]);
       } catch (err) {
-        console.log(err);
+        console.error(err); // eslint-disable-line no-console
       }
-      if (tracks) await client.publish([tracks[0], tracks[1]]);
+
       setStart(true);
     };
+
     if (ready && tracks) {
       try {
-        init(channelName);
+        init();
       } catch (err) {
-        console.log(err);
+        console.error(err); // eslint-disable-line no-console
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [channelName, client, ready, tracks]);
+  }, [channelName, client, ready, token, tracks, uid]);
 
   return {
     start,

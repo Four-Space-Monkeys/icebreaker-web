@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IAgoraRTCRemoteUser, ICameraVideoTrack, IMicrophoneAudioTrack } from 'agora-rtc-react';
 import Controls from './components/Controls';
 import User from './components/User';
@@ -20,9 +20,9 @@ function VideoCall({
   setInCall,
   setStart,
 }: IVideoCallProps) {
-  useEffect(() => {
-    // setGridSpacing(Math.max(Math.floor(12 / (users?.length || 0 + 1)), 4));
-  }, [users, audioTrack, videoTrack]);
+  // useEffect(() => {
+  //   setGridSpacing(Math.max(Math.floor(12 / (users?.length || 0 + 1)), 4));
+  // }, [users, audioTrack, videoTrack]);
 
   return (
     <div className={styles.container}>
