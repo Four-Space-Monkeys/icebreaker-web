@@ -32,7 +32,7 @@ const Authorizer = (props) => {
 
   let routes;
 
-  routes = <Login {...props} />;
+  // routes = <Login {...props} />;
 
   // if (!user) {
   //   routes = <AuthStack {...props} />;
