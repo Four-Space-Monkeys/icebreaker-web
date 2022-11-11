@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Home from './pages/Home';
+import TempLogin from './pages/TempLogin';
 import VideoCallPage from './pages/VideoCallPage';
 import { RoomInfo } from './types';
 
@@ -8,7 +9,11 @@ function App() {
   const [roomInfo, setRoomInfo] = useState<undefined | RoomInfo>(undefined);
   const [inCall, setInCall] = useState(false);
 
-  return inCall && roomInfo && uid ? (
+  if (uid === undefined) {
+    return <TempLogin setUid={setUid} />;
+  }
+
+  return inCall && roomInfo ? (
     <VideoCallPage
       uid={uid}
       roomInfo={roomInfo}
@@ -17,7 +22,6 @@ function App() {
   ) : (
     <Home
       uid={uid}
-      setUid={setUid}
       setRoomInfo={setRoomInfo}
       setInCall={setInCall}
     />
