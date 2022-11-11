@@ -14,12 +14,10 @@ function enterQueue(uid: string, onMatchCallback: Function) {
 
 function Home({
   uid,
-  setUid,
   setRoomInfo,
   setInCall,
 }: {
   uid: undefined | number;
-  setUid: React.Dispatch<React.SetStateAction<number | undefined>>;
   setRoomInfo: React.Dispatch<React.SetStateAction<RoomInfo | undefined>>;
   setInCall: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
@@ -27,13 +25,6 @@ function Home({
 
   return (
     <div>
-      {/* temporary input for uid until it gets passed from login */}
-      <input
-        type="text"
-        onChange={(e) => setUid(Number(e.target.value))}
-        value={uid || ''}
-        placeholder="set unique user id"
-      />
       <button
         type="button"
         disabled={inQueue}
