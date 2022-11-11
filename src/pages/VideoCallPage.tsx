@@ -1,11 +1,7 @@
-// import { IAgoraRTCRemoteUser } from 'agora-rtc-react';
 import React from 'react';
 import VideoCall from '../components/VideoCall/index';
 import useAgora from '../hooks/useAgora';
-import {
-  token,
-  channelName,
-} from '../utils/settings';
+import { token, channelName } from '../utils/settings';
 
 function VideoCallPage({
   setInCall,
@@ -19,7 +15,9 @@ function VideoCallPage({
     token,
   );
 
-  if (!audioTrack || !videoTrack) return <div>Requires permission to use the audio and video</div>;
+  if (!audioTrack || !videoTrack) {
+    return <div>Requires permission to use the audio and video</div>;
+  }
 
   return (
     <VideoCall

@@ -56,21 +56,11 @@ const useAgora = (channelName: string, token: string) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channelName, client, ready, tracks]);
 
-  if (tracks) {
-    return {
-      start,
-      setStart,
-      audioTrack: tracks[0],
-      videoTrack: tracks[1],
-      users,
-    };
-  }
-
   return {
     start,
     setStart,
-    audioTrack: null,
-    videoTrack: null,
+    audioTrack: tracks ? tracks[0] : null,
+    videoTrack: tracks ? tracks[1] : null,
     users,
   };
 };
