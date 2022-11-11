@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useStytch } from '@stytch/stytch-react';
-import { Box, TextField, Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // images / Styles
 import Logo from '../../../assets/logos/IBLogo.png';
 
@@ -23,25 +23,21 @@ export default function Register(props) {
   async function processSubmit(data) {
     const email = data.email.toLowerCase();
     const { password } = data;
-    console.log('data', data.email);
-    console.log('password', password);
+    // console.log('data', data.email);
+    // console.log('password', password);
 
     setSubmitting(true);
     try {
-      await stytchClient.passwords
-        .create({
-          email,
-          password,
-          session_duration_minutes: 1000,
-        })
-        .then((res) => {
-          console.log('You registered successfully', res);
-          setSubmitting(false);
-        });
+      const resp = await stytchClient.passwords.create({
+        email,
+        password,
+        session_duration_minutes: 1000,
+      });
+      console.log('You registered successfully', resp);
     } catch (err) {
       console.log('There was an Error', err);
-      setSubmitting(false);
     }
+    setSubmitting(false);
   }
 
   return (
@@ -49,7 +45,7 @@ export default function Register(props) {
       {/* <Fade top> */}
       <form className="form" onSubmit={handleSubmit(processSubmit)}>
         <div className="registerContainer">
-          {/* <img src={Logo} className="logoImage" alt="Ice Breaker" /> */}
+          <img src={Logo} className="logoImage" alt="Ice Breaker" />
           <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
             Sign up to start your Ice Breaker experience!
           </Typography>

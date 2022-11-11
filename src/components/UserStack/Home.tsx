@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useStytch } from '@stytch/stytch-react';
+import { useStytch, useStytchSession } from '@stytch/stytch-react';
 
 function Home() {
   const client = useStytch();
-  const navigate = useNavigate();
+  const session = useStytchSession();
+
+  console.log('session', session);
 
   const handleLogout = useCallback(async () => {
     await client.session.revoke();
     alert('Logged Out!');
-    navigate('/login');
   }, [client]);
 
   return (

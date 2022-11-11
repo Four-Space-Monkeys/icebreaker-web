@@ -25,26 +25,22 @@ export default function Login() {
   } = useForm();
 
   async function processSubmit(data) {
-    console.log('data', data.email);
-    console.log('password', data.password);
+    // console.log('data', data.email);
+    // console.log('password', data.password);
     const email = data.email.toLowerCase();
     const { password } = data;
     setSubmitting(true);
     try {
-      await stytchClient.passwords
-        .authenticate({
-          email,
-          password,
-          session_duration_minutes: 1000,
-        })
-        .then((res) => {
-          console.log('You logged in successfully', res);
-          setSubmitting(false);
-        });
+      const resp = await stytchClient.passwords.authenticate({
+        email,
+        password,
+        session_duration_minutes: 1000,
+      });
+      console.log('You logged in successfully', resp);
     } catch (err) {
       console.log('There was an Error', err);
-      setSubmitting(false);
     }
+    setSubmitting(false);
   }
 
   return (
@@ -52,7 +48,7 @@ export default function Login() {
       {/* <Fade top> */}
       <form className="form" onSubmit={handleSubmit(processSubmit)}>
         <div className="loginContainer">
-          {/* <img src={Logo} className="logoImage" alt="Ice Breaker" /> */}
+          <img src={Logo} className="logoImage" alt="Ice Breaker" />
           <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
             Login to Ice Breaker
           </Typography>
