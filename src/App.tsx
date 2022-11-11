@@ -5,6 +5,7 @@ function App() {
   return (
     <div>
       <Router />
+      {/* Add a navigation bar? */}
     </div>
   );
 }

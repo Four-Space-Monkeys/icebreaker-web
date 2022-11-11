@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { StytchProvider } from '@stytch/stytch-react';
+import { StytchUIClient } from '@stytch/vanilla-js';
 import App from './App';
 import reportWebVitals from './utils/reportWebVitals';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+const stytch = new StytchUIClient(
+  'public-token-test-3880a37c-4d7a-4fc2-a758-eefc0c4a2ef7',
+);
+// Store in a .env file later
+
 root.render(
   <React.StrictMode>
-    <App />
+    <StytchProvider stytch={stytch}>
+      <App />
+    </StytchProvider>
   </React.StrictMode>,
 );
 

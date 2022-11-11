@@ -12,6 +12,7 @@ function Router(props) {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/authenticate" element={<Authorizer />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
