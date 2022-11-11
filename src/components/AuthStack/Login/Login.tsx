@@ -1,20 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from "react";
+import React, { useState } from 'react';
 // import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 // import { useDispatch } from 'react-redux';
 
 // Components
-import { Box, Typography, TextField, Button } from "@mui/material";
-import { LoadingButton } from "@mui/lab";
-import { Link, useNavigate } from "react-router-dom";
+import { Typography, TextField, Button } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Images / Styling
-import "./Login.css";
-import Logo from "../../../assets/images/logos/IBLogo.png";
+import './Login.css';
+import Logo from '../../../assets/images/logos/IBLogo.png';
 
-const Bounce = require("react-reveal/Bounce");
+const Bounce = require('react-reveal/Bounce');
 
 export default function Login() {
   const [submitting, setSubmitting] = useState(false);
@@ -27,6 +27,8 @@ export default function Login() {
   } = useForm();
 
   async function processSubmit(data) {
+    console.log('data', data.email);
+    console.log('password', data.password);
     setSubmitting(true);
     // const email = data.email.toLowerCase();
 
@@ -34,7 +36,7 @@ export default function Login() {
   }
 
   return (
-    <div className="root">
+    <div className="rootContainer">
       <Bounce left>
         <form className="form" onSubmit={handleSubmit(processSubmit)}>
           <div className="loginContainer">
@@ -47,7 +49,7 @@ export default function Login() {
               label="Email"
               fullWidth
               size="small"
-              {...register("email", {
+              {...register('email', {
                 required: true,
                 pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
               })}
@@ -59,13 +61,13 @@ export default function Login() {
               fullWidth
               type="password"
               size="small"
-              {...register("password", {
+              {...register('password', {
                 required: true,
                 pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}/,
               })}
             />
 
-            {/* <input type="submit" style={{ display: "none" }} /> */}
+            <input type="submit" style={{ display: 'none' }} />
             <LoadingButton
               variant="contained"
               fullWidth
@@ -78,13 +80,13 @@ export default function Login() {
               Log in
             </LoadingButton>
             <Typography className="font1" sx={{ marginRight: 0.8 }}>
-              Forgot your password?{" "}
+              Forgot your password?{' '}
               <Link className="link" to="/forgot-password">
                 Reset it here
               </Link>
             </Typography>
             <Typography className="font1" sx={{ marginRight: 0.8 }}>
-              Not yet registered?{" "}
+              Not yet registered?{' '}
               <Link className="link" to="/register">
                 Sign up
               </Link>

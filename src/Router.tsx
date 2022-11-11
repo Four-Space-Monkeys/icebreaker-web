@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // import Snackbar from './components/Widgets/Snackbar';
 import Authorizer from './Authorizer';
+import Login from './components/AuthStack/Login/Login';
 // import IntroResponse from 'containers/Other/IntroResponse';
 
 function Router(props) {
@@ -11,7 +12,7 @@ function Router(props) {
       {/* <Snackbar /> */}
       <BrowserRouter>
         <Routes>
-          <Route path="*" element={<Authorizer />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>
