@@ -1,21 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-// import Snackbar from './components/Widgets/Snackbar';
 import Authorizer from './Authorizer';
 import Login from './components/AuthStack/Login/Login';
-// import IntroResponse from 'containers/Other/IntroResponse';
+import Register from './components/AuthStack/Register/Register';
+import Home from './components/Home';
 
 function Router(props) {
   return (
-    <>
-      {/* <Snackbar /> */}
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
