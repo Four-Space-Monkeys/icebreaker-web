@@ -12,7 +12,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 // Images / Styling
 import './Login.css';
-import Logo from '../../../assets/images/logos/IBLogo.png';
+import Logo from '../../../assets/logos/IBLogo.png';
 
 const Bounce = require('react-reveal/Bounce');
 
