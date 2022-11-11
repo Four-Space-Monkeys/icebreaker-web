@@ -13,11 +13,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import Logo from '../../../assets/logos/IBLogo.png';
 
-const Fade = require('react-reveal/Fade');
+// const Fade = require('react-reveal/Fade');
 
 export default function Login() {
   const [submitting, setSubmitting] = useState(false);
-  // const navigate = useNavigate();
 
   const {
     register,
@@ -49,7 +48,7 @@ export default function Login() {
 
   return (
     <div className="rootContainer">
-      <Fade top>
+      {/* <Fade top> */}
         <form className="form" onSubmit={handleSubmit(processSubmit)}>
           <div className="loginContainer">
             {/* <img src={Logo} className="logoImage" alt="Ice Breaker" /> */}
@@ -117,7 +116,7 @@ export default function Login() {
           </div>
           <Typography sx={{ marginTop: 1 }}>Powered by Ice Breaker</Typography>
         </form>
-      </Fade>
+      {/* </Fade> */}
     </div>
   );
 }

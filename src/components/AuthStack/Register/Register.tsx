@@ -9,7 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 // images / Styles
 import Logo from '../../../assets/logos/IBLogo.png';
 
-const Fade = require('react-reveal/Fade');
+// const Fade = require('react-reveal/Fade');
 
 export default function Register(props) {
   const [submitting, setSubmitting] = useState(false);
@@ -41,7 +41,7 @@ export default function Register(props) {
 
   return (
     <div className="rootContainer">
-      <Fade top>
+      {/* <Fade top> */}
         <form className="form" onSubmit={handleSubmit(processSubmit)}>
           <div className="registerContainer">
             {/* <img src={Logo} className="logoImage" alt="Ice Breaker" /> */}
@@ -93,7 +93,7 @@ export default function Register(props) {
           </div>
           <Typography sx={{ marginTop: 1 }}>Powered by Ice Breaker</Typography>
         </form>
-      </Fade>
+      {/* </Fade> */}
     </div>
   );
 }
