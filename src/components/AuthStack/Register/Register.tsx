@@ -69,6 +69,7 @@ export default function Register(props) {
                 required: true,
                 pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}/,
               })}
+              helperText="Minimum 8 characters, 1 lowercase, 1 uppercase and 1 number."
             />
 
             <input type="submit" style={{ display: 'none' }} />
@@ -88,12 +89,6 @@ export default function Register(props) {
               <Link className="link" to="/login">
                 Login here.
               </Link>
-            </Typography>
-            <Typography className="font1" sx={{ marginRight: 0.8 }}>
-              Forgot your password?{' '}
-              {/* <Link className="link" to="/register">
-                Reset it here.
-              </Link> */}
             </Typography>
           </div>
           <Typography sx={{ marginTop: 1 }}>Powered by Ice Breaker</Typography>

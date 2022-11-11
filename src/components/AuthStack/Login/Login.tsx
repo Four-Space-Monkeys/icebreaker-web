@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -43,7 +42,7 @@ export default function Login() {
           // Might be able to do this under Router instead of Authorizer?
         });
     } catch (err) {
-      console.log( 'There was an error', err);
+      console.log('There was an error', err);
       setSubmitting(false);
     }
   }
@@ -53,7 +52,7 @@ export default function Login() {
       <Fade top>
         <form className="form" onSubmit={handleSubmit(processSubmit)}>
           <div className="loginContainer">
-            <img src={Logo} className="logoImage" alt="Ice Breaker" />
+            {/* <img src={Logo} className="logoImage" alt="Ice Breaker" /> */}
             <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
               Login to Ice Breaker
             </Typography>
