@@ -11,7 +11,23 @@ export default function Authorizer() {
 
   let routes;
 
-  if (!session?.user_id) {
+  // useEffect(() => {
+  //   if (session) {
+  //     window.location.href = 'https://localhost:3000/';
+  //   } else {
+  //     const token = new URLSearchParams(window.location.search).get('token');
+  //     client.oauth.authenticate(token, {
+  //       session_duration_minutes: 5,
+  //     });
+  //   }
+  // }, [client, session]);
+
+  const token = new URLSearchParams(window.location.search).get('token');
+  if (token) {
+    client.oauth.authenticate(token, {
+      session_duration_minutes: 5,
+    });
+  } else if (!session?.user_id) {
     routes = <Auth />;
   } else {
     routes = <Home />;

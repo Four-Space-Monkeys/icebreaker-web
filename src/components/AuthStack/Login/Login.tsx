@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useStytch, StytchLogin } from '@stytch/react';
+import { OAuthProviders } from '@stytch/vanilla-js';
 // import { StytchLogin } from '@stytch/react';
 
 // Components
@@ -44,34 +45,36 @@ export default function Login() {
     setSubmitting(false);
   }
 
-  // function HangleLinkedinLogin() {
-  //   const stytchProps = {
-  //     config: {
-  //       products: ['oauth'],
-  //       oauthOptions: {
-  //         providers: [{
-  //           type: 'linkedin',
-  //           one_tap: true,
-  //           position: 'embedded',
-  //         }],
-  //       },
-  //     },
-  //   };
-  // }
+  async function linkedinOAuth() {
+    stytchClient.oauth.linkedin.start({
+      login_redirect_url: 'http://127.0.0.1:3000/',
+      signup_redirect_url: 'http://127.0.0.1:3000/',
+    });
+  }
+
   const stytchProps = {
     config: {
       products: ['oauth'],
       oauthOptions: {
-        providers: [
-          {
-            type: 'linkedin',
-            one_tap: true,
-            position: 'embedded',
-          },
-        ],
+        providers: [{ type: OAuthProviders.LinkedIn }],
       },
     },
   };
+
+  //   function OAuthStartButton() {
+  //   const stytch = useStytch();
+  //   const startOAuthFlow = useCallback(() => stytch.oauth.google.start({
+  //     login_redirect_url: 'https://example.com/callback',
+  //     signup_redirect_url: 'https://example.com/callback',
+  //     custom_scopes: ['https://www.googleapis.com/auth/calendar']
+  //   }), [stytch])
+
+  //   return (
+  //     <button onClick={startOAuthFlow}>
+  //       Click here to log in with Google
+  //     </button>
+  //   );
+  // }
 
   return (
     <div className="rootContainer">
@@ -119,16 +122,15 @@ export default function Login() {
           <div>
             <StytchLogin config={stytchProps.config} />
           </div>
-          {/* <LoadingButton
+          <LoadingButton
             variant="contained"
             fullWidth
             size="large"
-            loading={submitting}
-            onClick={HangleLinkedinLogin}
+            onClick={linkedinOAuth}
             sx={{ marginTop: 1, marginBottom: 1 }}
           >
             Log in with LinkedIn
-          </LoadingButton> */}
+          </LoadingButton>
           <Typography className="font1" sx={{ marginRight: 0.8 }}>
             Forgot your password?{' '}
             <Link className="link" to="/reset-password">
