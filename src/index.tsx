@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { StytchProvider } from '@stytch/stytch-react';
+import { StytchProvider } from '@stytch/react';
 import { StytchUIClient } from '@stytch/vanilla-js';
 import App from './App';
 import reportWebVitals from './utils/reportWebVitals';

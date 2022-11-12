@@ -2,7 +2,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useStytch } from '@stytch/stytch-react';
+import { useStytch, StytchLogin } from '@stytch/react';
+// import { StytchLogin } from '@stytch/react';
 
 // Components
 import { Typography, TextField, Button } from '@mui/material';
@@ -43,6 +44,35 @@ export default function Login() {
     setSubmitting(false);
   }
 
+  // function HangleLinkedinLogin() {
+  //   const stytchProps = {
+  //     config: {
+  //       products: ['oauth'],
+  //       oauthOptions: {
+  //         providers: [{
+  //           type: 'linkedin',
+  //           one_tap: true,
+  //           position: 'embedded',
+  //         }],
+  //       },
+  //     },
+  //   };
+  // }
+  const stytchProps = {
+    config: {
+      products: ['oauth'],
+      oauthOptions: {
+        providers: [
+          {
+            type: 'linkedin',
+            one_tap: true,
+            position: 'embedded',
+          },
+        ],
+      },
+    },
+  };
+
   return (
     <div className="rootContainer">
       {/* <Fade top> */}
@@ -81,26 +111,27 @@ export default function Login() {
             fullWidth
             size="large"
             loading={submitting}
-            // loadingPosition={'end'}
             onClick={handleSubmit(processSubmit)}
             sx={{ marginTop: 3 }}
           >
             Log in
           </LoadingButton>
-          <LoadingButton
+          <div>
+            <StytchLogin config={stytchProps.config} />
+          </div>
+          {/* <LoadingButton
             variant="contained"
             fullWidth
             size="large"
             loading={submitting}
-            // loadingPosition={'end'}
-            onClick={handleSubmit(processSubmit)}
+            onClick={HangleLinkedinLogin}
             sx={{ marginTop: 1, marginBottom: 1 }}
           >
             Log in with LinkedIn
-          </LoadingButton>
+          </LoadingButton> */}
           <Typography className="font1" sx={{ marginRight: 0.8 }}>
             Forgot your password?{' '}
-            <Link className="link" to="/forgot-password">
+            <Link className="link" to="/reset-password">
               Reset it here
             </Link>
           </Typography>

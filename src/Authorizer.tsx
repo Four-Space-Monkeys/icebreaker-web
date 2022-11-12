@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useStytch, useStytchSession } from '@stytch/stytch-react';
+import { useStytch, useStytchSession } from '@stytch/react';
 import { useNavigate } from 'react-router-dom';
 import Auth from './components/AuthStack/Auth';
 import Home from './components/UserStack/Home';

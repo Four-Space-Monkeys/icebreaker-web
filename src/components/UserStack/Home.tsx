@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useStytch, useStytchSession } from '@stytch/stytch-react';
+import { useStytch, useStytchSession } from '@stytch/react';
 
 function Home() {
   const client = useStytch();

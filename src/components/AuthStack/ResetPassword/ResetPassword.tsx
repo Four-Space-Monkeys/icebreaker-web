@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -7,11 +6,10 @@ import { TextField, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { Link } from 'react-router-dom';
 // images / Styles
-import Logo from '../../../assets/logos/IBLogo.png';
 
 // const Fade = require('react-reveal/Fade');
 
-export default function Register(props) {
+export default function ResetPassword(props) {
   const [submitting, setSubmitting] = useState(false);
   const stytchClient = useStytch();
   const {
@@ -22,18 +20,14 @@ export default function Register(props) {
 
   async function processSubmit(data) {
     const email = data.email.toLowerCase();
-    const { password } = data;
-    // console.log('data', data.email);
-    // console.log('password', password);
+    console.log('email', email);
 
     setSubmitting(true);
     try {
-      const resp = await stytchClient.passwords.create({
+      const resp = await stytchClient.passwords.resetByEmailStart({
         email,
-        password,
-        session_duration_minutes: 1000,
       });
-      console.log('You registered successfully', resp);
+      console.log('Check your Email', resp);
     } catch (err) {
       console.log('There was an Error', err);
     }
@@ -45,9 +39,8 @@ export default function Register(props) {
       {/* <Fade top> */}
       <form className="form" onSubmit={handleSubmit(processSubmit)}>
         <div className="registerContainer">
-          <img src={Logo} className="logoImage" alt="Ice Breaker" />
           <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
-            Sign up to start your Ice Breaker experience!
+            Reset Your Password
           </Typography>
           <TextField
             error={!!errors.email}
@@ -60,35 +53,27 @@ export default function Register(props) {
             })}
             sx={{ marginBottom: 2 }}
           />
-          <TextField
-            error={!!errors.password}
-            label="Password"
-            fullWidth
-            type="password"
-            size="small"
-            {...register('password', {
-              required: true,
-              pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}/,
-            })}
-            helperText="Minimum 8 characters, 1 lowercase, 1 uppercase and 1 number."
-          />
-
           <input type="submit" style={{ display: 'none' }} />
           <LoadingButton
             variant="contained"
             fullWidth
             size="large"
             loading={submitting}
-            // loadingPosition={'end'}
             onClick={handleSubmit(processSubmit)}
             sx={{ marginTop: 3, marginBottom: 1 }}
           >
-            Register
+            Send Reset Email
           </LoadingButton>
           <Typography className="font1" sx={{ marginRight: 0.8 }}>
-            Already registered?{' '}
-            <Link className="link" to="/login">
+            Remember your password?{' '}
+            <Link className="link" to="/">
               Login here.
+            </Link>
+          </Typography>
+          <Typography className="font1" sx={{ marginRight: 0.8 }}>
+            Not yet Registered?{' '}
+            <Link className="link" to="/register">
+              Sign up.
             </Link>
           </Typography>
         </div>
