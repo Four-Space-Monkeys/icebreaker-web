@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import { useStytchSession } from '@stytch/react';
-||||||| d4d3495
-=======
 import MenuBar from './layout/menubar/MenuBar';
->>>>>>> main
 import Home from './pages/Home';
 import VideoCallPage from './pages/VideoCallPage';
 
