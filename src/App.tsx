@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { useStytchSession } from '@stytch/react';
+||||||| d4d3495
+=======
+import MenuBar from './layout/menubar/MenuBar';
+>>>>>>> main
 import Home from './pages/Home';
 import VideoCallPage from './pages/VideoCallPage';
+
 import { RoomInfo } from './types';
 
 function App() {
@@ -17,18 +23,17 @@ function App() {
     return <code>No Uid sad</code>;
   }
 
-  return inCall && roomInfo ? (
-    <VideoCallPage
-      uid={uid}
-      roomInfo={roomInfo}
-      setInCall={setInCall}
-    />
-  ) : (
-    <Home
-      uid={uid}
-      setRoomInfo={setRoomInfo}
-      setInCall={setInCall}
-    />
+  return (
+    <div id="App" style={{ display: 'flex' }}>
+      <MenuBar uid={uid} />
+      <div id="main-screen" style={{ flex: 1 }}>
+        {inCall && roomInfo ? (
+          <VideoCallPage uid={uid} roomInfo={roomInfo} setInCall={setInCall} />
+        ) : (
+          <Home uid={uid} setRoomInfo={setRoomInfo} setInCall={setInCall} />
+        )}
+      </div>
+    </div>
   );
 }
 

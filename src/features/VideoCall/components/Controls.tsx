@@ -28,7 +28,12 @@ function Controls({
     }
   };
 
+<<<<<<< HEAD:src/components/VideoCall/components/Controls.tsx
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+||||||| d4d3495:src/components/VideoCall/components/Controls.tsx
+=======
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+>>>>>>> main:src/features/VideoCall/components/Controls.tsx
   const switchChannel = async () => {
     // if use wants to join another channel
   };
