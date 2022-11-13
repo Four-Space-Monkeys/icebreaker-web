@@ -6,7 +6,7 @@ import Home from './components/UserStack/Home';
 
 export default function Authorizer() {
   const client = useStytch();
-  const session = useStytchSession();
+  const { session } = useStytchSession();
   const navigate = useNavigate();
 
   let routes;
@@ -23,11 +23,13 @@ export default function Authorizer() {
   // }, [client, session]);
 
   const token = new URLSearchParams(window.location.search).get('token');
-  if (token) {
-    client.oauth.authenticate(token, {
-      session_duration_minutes: 5,
-    });
-  } else if (!session?.user_id) {
+  // if (token) {
+  //   client.oauth.authenticate(token, {
+  //     session_duration_minutes: 5,
+  //   });
+  // } else
+
+  if (!session?.user_id) {
     routes = <Auth />;
   } else {
     routes = <Home />;

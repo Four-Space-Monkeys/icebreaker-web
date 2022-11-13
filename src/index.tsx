@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StytchProvider } from '@stytch/react';
 import { StytchUIClient } from '@stytch/vanilla-js';
-import App from './App';
+import Router from './Router';
 import reportWebVitals from './utils/reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -10,14 +10,13 @@ const root = ReactDOM.createRoot(
 );
 
 const stytch = new StytchUIClient(
-  'public-token-test-3880a37c-4d7a-4fc2-a758-eefc0c4a2ef7',
+  process.env.STYTCH_TOKEN,
 );
-// Store in a .env file later
 
 root.render(
   <React.StrictMode>
     <StytchProvider stytch={stytch}>
-      <App />
+      <Router />
     </StytchProvider>
   </React.StrictMode>,
 );
