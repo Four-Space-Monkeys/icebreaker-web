@@ -9,9 +9,9 @@ function MenuBar({ uid }: { uid: number }) {
   const tabHandler = (tab: string) => setSelectedTab(tab);
 
   return (
-    <div id="menubar">
+    <div id="menubar" className={styles.menuBar}>
       <div id="logo">Logo</div>
-      <div id="menuItems">
+      <div id="menuItems" className={styles.menuItems}>
         {MENU_ITEMS.map((tab: string) => (
           <MenuItem
             key={tab}

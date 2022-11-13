@@ -10,8 +10,11 @@ export default function MenuItem({
   icon: string;
 }) {
   return (
-    <div id={icon} className={isSelected ? 'green' : ''}>
-      <button type="button" onClick={() => tabHandler(tab)}>
+    <div
+      id={icon}
+      className={`${styles.menuItem} ${isSelected ? styles.isSelected : ''}`}
+    >
+      <button className={styles.tab} type="button" onClick={() => tabHandler(tab)}>
         {tab}
       </button>
     </div>
