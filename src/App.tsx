@@ -3,6 +3,7 @@ import MenuBar from './layout/menubar/MenuBar';
 import Home from './pages/Home';
 import TempLogin from './pages/TempLogin';
 import VideoCallPage from './pages/VideoCallPage';
+
 import { RoomInfo } from './types';
 
 function App() {
@@ -15,13 +16,15 @@ function App() {
   }
 
   return (
-    <div>
+    <div id="App" style={{ display: 'flex' }}>
       <MenuBar uid={uid} />
-      {inCall && roomInfo ? (
-        <VideoCallPage uid={uid} roomInfo={roomInfo} setInCall={setInCall} />
-      ) : (
-        <Home uid={uid} setRoomInfo={setRoomInfo} setInCall={setInCall} />
-      )}
+      <div id="main-screen" style={{ flex: 1 }}>
+        {inCall && roomInfo ? (
+          <VideoCallPage uid={uid} roomInfo={roomInfo} setInCall={setInCall} />
+        ) : (
+          <Home uid={uid} setRoomInfo={setRoomInfo} setInCall={setInCall} />
+        )}
+      </div>
     </div>
   );
 }

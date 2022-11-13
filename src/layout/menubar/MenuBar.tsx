@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MenuItem from './MenuItem';
+import styles from './MenuBar.module.scss';
 
 const MENU_ITEMS = ['Home', 'About', 'Contact', 'Video'];
 
