@@ -1,0 +1,16 @@
+$color-primary: rgb(0, 185, 0);
+$color-white: #fff;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.isSelected {
+  border-right: $color-primary 2px solid;
+  color: $color-white;
+}
+.tab {
+    width:100%;
+}
