@@ -3,7 +3,7 @@ import {
   BrowserRouter, Route, Routes,
 } from 'react-router-dom';
 import { useStytchSession } from '@stytch/react';
-import Auth from './components/AuthStack/Auth';
+import Auth from './features/AuthStack/Auth';
 import App from './App';
 
 function Router() {
