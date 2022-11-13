@@ -1,14 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { StytchProvider } from '@stytch/react';
+import { StytchUIClient } from '@stytch/vanilla-js';
+import Router from './Router';
 import reportWebVitals from './utils/reportWebVitals';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+if (!process.env.REACT_APP_STYTCH_TOKEN) {
+  throw new Error('need stych token in .env');
+}
+
+const stytch = new StytchUIClient(
+  process.env.REACT_APP_STYTCH_TOKEN,
+);
+
 root.render(
   <React.StrictMode>
-    <App />
+    <StytchProvider stytch={stytch}>
+      <Router />
+    </StytchProvider>
   </React.StrictMode>,
 );
 
