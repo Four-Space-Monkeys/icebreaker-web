@@ -11,7 +11,7 @@ import Logo from '../../../assets/logos/IBLogo.png';
 
 // const Fade = require('react-reveal/Fade');
 
-export default function Register(props) {
+export default function Register() {
   const [submitting, setSubmitting] = useState(false);
   const stytchClient = useStytch();
   const {
@@ -56,7 +56,7 @@ export default function Register(props) {
             size="small"
             {...register('email', {
               required: true,
-              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
             })}
             sx={{ marginBottom: 2 }}
           />

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 // const Fade = require('react-reveal/Fade');
 
-export default function ResetPassword(props) {
+export default function ResetPassword() {
   const [submitting, setSubmitting] = useState(false);
   const stytchClient = useStytch();
   const {
@@ -49,7 +49,7 @@ export default function ResetPassword(props) {
             size="small"
             {...register('email', {
               required: true,
-              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
             })}
             sx={{ marginBottom: 2 }}
           />
@@ -65,13 +65,13 @@ export default function ResetPassword(props) {
             Send Reset Email
           </LoadingButton>
           <Typography className="font1" sx={{ marginRight: 0.8 }}>
-            Remember your password?{' '}
+            Remember your password?
             <Link className="link" to="/">
               Login here.
             </Link>
           </Typography>
           <Typography className="font1" sx={{ marginRight: 0.8 }}>
-            Not yet Registered?{' '}
+            Not yet Registered?
             <Link className="link" to="/register">
               Sign up.
             </Link>

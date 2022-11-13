@@ -2,14 +2,14 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useStytch, StytchLogin } from '@stytch/react';
-import { OAuthProviders } from '@stytch/vanilla-js';
+import { useStytch } from '@stytch/react';
+// import { OAuthProviders } from '@stytch/vanilla-js';
 // import { StytchLogin } from '@stytch/react';
 
 // Components
-import { Typography, TextField, Button } from '@mui/material';
+import { Typography, TextField } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // Images / Styling
 import './Login.css';
@@ -27,8 +27,6 @@ export default function Login() {
   } = useForm();
 
   async function processSubmit(data) {
-    // console.log('data', data.email);
-    // console.log('password', data.password);
     const email = data.email.toLowerCase();
     const { password } = data;
     setSubmitting(true);
@@ -52,14 +50,14 @@ export default function Login() {
     });
   }
 
-  const stytchProps = {
-    config: {
-      products: ['oauth'],
-      oauthOptions: {
-        providers: [{ type: OAuthProviders.LinkedIn }],
-      },
-    },
-  };
+  // const stytchProps = {
+  //   config: {
+  //     products: ['oauth'],
+  //     oauthOptions: {
+  //       providers: [{ type: OAuthProviders.LinkedIn }],
+  //     },
+  //   },
+  // };
 
   //   function OAuthStartButton() {
   //   const stytch = useStytch();
@@ -92,7 +90,7 @@ export default function Login() {
             size="small"
             {...register('email', {
               required: true,
-              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
             })}
             sx={{ marginBottom: 2 }}
           />
@@ -119,14 +117,14 @@ export default function Login() {
           >
             Log in
           </LoadingButton>
-          <div>
+          {/* <div>
             <StytchLogin config={stytchProps.config} />
-          </div>
+          </div> */}
           <LoadingButton
             variant="contained"
             fullWidth
             size="large"
-            onClick={linkedinOAuth}
+            onClick={() => linkedinOAuth}
             sx={{ marginTop: 1, marginBottom: 1 }}
           >
             Log in with LinkedIn

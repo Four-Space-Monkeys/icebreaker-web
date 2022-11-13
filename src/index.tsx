@@ -9,8 +9,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
+if (!process.env.REACT_APP_STYTCH_TOKEN) {
+  throw new Error('need stych token in .env');
+}
+
 const stytch = new StytchUIClient(
-  process.env.STYTCH_TOKEN,
+  process.env.REACT_APP_STYTCH_TOKEN,
 );
 
 root.render(

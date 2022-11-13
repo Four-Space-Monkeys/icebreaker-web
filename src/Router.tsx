@@ -1,15 +1,14 @@
 import React from 'react';
 import {
-  BrowserRouter, Route, Routes, useNavigate,
+  BrowserRouter, Route, Routes,
 } from 'react-router-dom';
-import { useStytch, useStytchSession } from '@stytch/react';
+import { useStytchSession } from '@stytch/react';
 import Auth from './components/AuthStack/Auth';
 import App from './App';
 
-function Router(props) {
-  const client = useStytch();
+function Router() {
+  // const client = useStytch();
   const { session } = useStytchSession();
-  const navigate = useNavigate();
 
   // useEffect(() => {
   //   if (session) {
@@ -22,7 +21,7 @@ function Router(props) {
   //   }
   // }, [client, session]);
 
-  const token = new URLSearchParams(window.location.search).get('token');
+  // const token = new URLSearchParams(window.location.search).get('token');
   // if (token) {
   //   client.oauth.authenticate(token, {
   //     session_duration_minutes: 5,

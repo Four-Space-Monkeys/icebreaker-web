@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { io } from 'socket.io-client';
+import { useStytch } from '@stytch/react';
 import { RoomInfo } from '../types';
 
 function enterQueue(uid: string, onMatchCallback: Function) {
@@ -23,6 +24,13 @@ function Home({
 }) {
   const [inQueue, setInQueue] = useState(false);
 
+  const client = useStytch();
+
+  const handleLogout = useCallback(async () => {
+    await client.session.revoke();
+    alert('Logged Out!');
+  }, [client]);
+
   return (
     <div>
       <button
@@ -40,6 +48,7 @@ function Home({
       >
         Join Call
       </button>
+      <button type="button" onClick={handleLogout}> Logout </button>
     </div>
   );
 }
