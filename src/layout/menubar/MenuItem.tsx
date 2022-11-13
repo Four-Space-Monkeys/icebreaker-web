@@ -1,14 +1,15 @@
 import React from 'react';
 
-type Props = {
+export default function MenuItem({
+  isSelected, tabHandler, tab, icon,
+}: {
+  isSelected: boolean;
   tabHandler: Function;
   tab: string;
   icon: string;
-};
-// Buttons
-export default function MenuItem({ tabHandler, tab, icon }: Props) {
+}) {
   return (
-    <div id={icon}>
+    <div id={icon} className={isSelected ? 'green' : ''}>
       <button type="button" onClick={() => tabHandler(tab)}>
         {tab}
       </button>

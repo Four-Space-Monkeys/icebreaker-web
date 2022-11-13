@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MenuBar from './layout/menubar/MenuBar';
 import Home from './pages/Home';
 import TempLogin from './pages/TempLogin';
 import VideoCallPage from './pages/VideoCallPage';
@@ -13,18 +14,15 @@ function App() {
     return <TempLogin setUid={setUid} />;
   }
 
-  return inCall && roomInfo ? (
-    <VideoCallPage
-      uid={uid}
-      roomInfo={roomInfo}
-      setInCall={setInCall}
-    />
-  ) : (
-    <Home
-      uid={uid}
-      setRoomInfo={setRoomInfo}
-      setInCall={setInCall}
-    />
+  return (
+    <div>
+      <MenuBar uid={uid} />
+      {inCall && roomInfo ? (
+        <VideoCallPage uid={uid} roomInfo={roomInfo} setInCall={setInCall} />
+      ) : (
+        <Home uid={uid} setRoomInfo={setRoomInfo} setInCall={setInCall} />
+      )}
+    </div>
   );
 }
 

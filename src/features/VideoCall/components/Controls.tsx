@@ -28,6 +28,7 @@ function Controls({
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const switchChannel = async () => {
     // if use wants to join another channel
   };
