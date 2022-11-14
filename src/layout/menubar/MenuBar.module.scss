@@ -9,9 +9,47 @@ $color-white: #fff;
 }
 
 /******* MenuBar *******/
+.menuBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 30px 20px;
+    border-right: rgba(128, 128, 128, 0.509) 1px solid;
+}
+.menuLogo, .menuProfile {
+    border: 1px solid $color-primary;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.menuItems {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
 
 /******* MenuItem *******/
+
+.menuItem {
+    button{
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    }
+}
 
 .tab {
     width:100%;
@@ -19,5 +57,6 @@ $color-white: #fff;
 
 .isSelected {
   border-right: $color-primary 2px solid;
-  color: $color-white;
+  color: $color-primary;
 }
+

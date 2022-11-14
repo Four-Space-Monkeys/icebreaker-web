@@ -23,8 +23,6 @@ function MenuBar({ uid }: { uid: number }) {
         ))}
       </div>
       <div id="menuProfile" className={styles.menuProfile}>
-        Profile:
-        {' '}
         {uid}
       </div>
     </div>
