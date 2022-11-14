@@ -26,7 +26,7 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  async function processSubmit(data) {
+  async function processSubmit(data: any) {
     const email = data.email.toLowerCase();
     const { password } = data;
     setSubmitting(true);

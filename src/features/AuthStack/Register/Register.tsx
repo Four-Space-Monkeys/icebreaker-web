@@ -20,7 +20,7 @@ export default function Register() {
     formState: { errors },
   } = useForm();
 
-  async function processSubmit(data) {
+  async function processSubmit(data: any) {
     const email = data.email.toLowerCase();
     const { password } = data;
     // console.log('data', data.email);

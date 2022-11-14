@@ -10,7 +10,7 @@ function MenuBar({ uid }: { uid: number }) {
 
   return (
     <div id="menubar" className={styles.menuBar}>
-      <div id="logo">Logo</div>
+      <div id="menuLogo" className={styles.menuLogo}>Logo</div>
       <div id="menuItems" className={styles.menuItems}>
         {MENU_ITEMS.map((tab: string) => (
           <MenuItem
@@ -22,7 +22,7 @@ function MenuBar({ uid }: { uid: number }) {
           />
         ))}
       </div>
-      <div id="profile">
+      <div id="menuProfile" className={styles.menuProfile}>
         Profile:
         {' '}
         {uid}

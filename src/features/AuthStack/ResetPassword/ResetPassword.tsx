@@ -18,7 +18,7 @@ export default function ResetPassword() {
     formState: { errors },
   } = useForm();
 
-  async function processSubmit(data) {
+  async function processSubmit(data: any) {
     const email = data.email.toLowerCase();
     console.log('email', email);
 

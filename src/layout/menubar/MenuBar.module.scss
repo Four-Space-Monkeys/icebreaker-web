@@ -1,5 +1,6 @@
 $color-primary: rgb(0, 185, 0);
 $color-white: #fff;
+/************************** Layout: MenuBar *******************************/
 
 * {
     box-sizing: border-box;
@@ -7,10 +8,16 @@ $color-white: #fff;
     padding: 0;
 }
 
+/******* MenuBar *******/
+
+
+/******* MenuItem *******/
+
+.tab {
+    width:100%;
+}
+
 .isSelected {
   border-right: $color-primary 2px solid;
   color: $color-white;
-}
-.tab {
-    width:100%;
 }
