@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
@@ -11,6 +12,11 @@ import Logo from '../../../assets/logos/IBLogo.png';
 
 // const Fade = require('react-reveal/Fade');
 
+type FormValues = {
+  email: string;
+  password: string;
+};
+
 export default function Register() {
   const [submitting, setSubmitting] = useState(false);
   const stytchClient = useStytch();
@@ -18,9 +24,9 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  async function processSubmit(data) {
+  async function processSubmit(data: FormValues) {
     const email = data.email.toLowerCase();
     const { password } = data;
     // console.log('data', data.email);
