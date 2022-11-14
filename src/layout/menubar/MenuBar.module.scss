@@ -1,11 +1,28 @@
+@import '../../assets/stylesheets/globals/media';
+
 $color-primary: rgb(0, 185, 0);
 $color-white: #fff;
 /************************** Layout: MenuBar *******************************/
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*,
+:after,
+:before {
+  box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+.mainScreen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /******* MenuBar *******/
@@ -35,6 +52,30 @@ $color-white: #fff;
     justify-content: center;
     align-items: center;
     gap: 30px;
+}
+
+@include up-to-breakpoint($mobile) {
+    .app {
+        flex-direction: column-reverse;
+    }
+    .mainScreen {
+        flex: 1;
+    }
+    .menuBar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        padding: 10px 20px;
+        border-top: rgba(128, 128, 128, 0.509) 1px solid;
+    }
+    .menuItems {
+        flex-direction: row;
+        gap: 3px;
+    }
+
+    
+
 }
 
 /******* MenuItem *******/
