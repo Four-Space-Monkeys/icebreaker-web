@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ICameraVideoTrack, IMicrophoneAudioTrack } from 'agora-rtc-react';
-import { useClient } from '../../../utils/settings';
-import styles from '../styles/VideoCall.module.scss';
+import { useClient } from '../../utils/settings';
+import styles from './video.module.scss';
 
 interface IControlsProps {
   audioTrack: IMicrophoneAudioTrack;

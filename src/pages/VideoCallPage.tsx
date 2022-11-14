@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoCall from '../features/VideoCall/index';
+import VideoCall from '../features/video/index';
 import useAgora from '../hooks/useAgora';
 import { RoomInfo } from '../types';
 
