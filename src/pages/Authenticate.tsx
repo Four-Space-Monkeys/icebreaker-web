@@ -16,7 +16,7 @@ export default function Authenticate() {
       navigate('/');
     } else {
       stytchClient.oauth.authenticate(token, {
-        session_duration_minutes: 5,
+        session_duration_minutes: 360,
       });
     }
   }, [stytchClient, session, navigate, token]);
