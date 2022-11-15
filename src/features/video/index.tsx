@@ -44,11 +44,11 @@ function VideoChat({
         </button>
       </div>
       <div id="video-main" className={styles.videoMain}>
-        {userVideoTrack ? (
+        {localVideoTrack ? (
           <AgoraVideoPlayer
             id="video--local"
-            videoTrack={userVideoTrack}
-            style={{ height: '100%', width: '100%' }}
+            videoTrack={localVideoTrack}
+            style={{ width: '100%', height: '100%' }}
           />
         ) : (
           <div
@@ -77,15 +77,16 @@ function VideoChat({
             <div>00:00</div>
           </div>
           <div id="video-side" className={styles.sideVideo}>
-            {localVideoTrack ? (
+            {userVideoTrack ? (
               <AgoraVideoPlayer
                 id="video--client"
-                videoTrack={localVideoTrack}
-                style={{ height: '150px', width: '150px' }}
+                videoTrack={userVideoTrack}
+                className={styles.sideVideoPlayer}
+                // style={{ height: '150px', width: '150px' }}
               />
             ) : (
-              <div style={{ height: '150px', width: '150px' }}>
-                No video track
+              <div className={styles.sideVideoPlayer}>
+                No Video Track
               </div>
             )}
           </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MenuItem from './MenuItem';
 import styles from './MenuBar.module.scss';
 
-const MENU_ITEMS = ['Home', 'About', 'Contact', 'Video'];
+const MENU_ITEMS = ['Home', 'Video', 'Settings'];
 
 function MenuBar({ uid }: { uid: number }) {
   const [selectedTab, setSelectedTab] = useState('Home');
@@ -18,7 +18,6 @@ function MenuBar({ uid }: { uid: number }) {
             isSelected={selectedTab === tab}
             tabHandler={tabHandler}
             tab={tab}
-            icon={tab}
           />
         ))}
       </div>
