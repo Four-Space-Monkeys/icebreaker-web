@@ -63,7 +63,7 @@ export default function Login() {
       <div className="rootContainer">
         <form className="form" onSubmit={handleSubmit(processSubmit)}>
           <div className="loginContainer">
-            <img src={Logo} className="logoImage" alt="Ice Breaker" />
+            <img src={Logo} className="logoImage" alt="IceBreaker Logo" />
             <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
               Login to Ice Breaker
             </Typography>
@@ -123,7 +123,7 @@ export default function Login() {
               </Link>
             </Typography>
           </div>
-          <Typography sx={{ marginTop: 1 }}>Powered by Ice Breaker</Typography>
+          <Typography sx={{ marginTop: 1 }}>Powered by IceBreaker</Typography>
         </form>
       </div>
     </Fade>
