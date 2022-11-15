@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,6 +10,10 @@ import { Link } from 'react-router-dom';
 
 // const Fade = require('react-reveal/Fade');
 
+type FormValues = {
+  email: string;
+};
+
 export default function ResetPassword() {
   const [submitting, setSubmitting] = useState(false);
   const stytchClient = useStytch();
@@ -16,9 +21,9 @@ export default function ResetPassword() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  async function processSubmit(data: any) {
+  async function processSubmit(data: FormValues) {
     const email = data.email.toLowerCase();
     console.log('email', email);
 
