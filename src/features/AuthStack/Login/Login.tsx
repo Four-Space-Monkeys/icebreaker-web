@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useStytch } from '@stytch/react';
-// import { OAuthProviders } from '@stytch/vanilla-js';
-// import { StytchLogin } from '@stytch/react';
 
 // Components
 import { Typography, TextField } from '@mui/material';

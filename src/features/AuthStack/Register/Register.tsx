@@ -26,8 +26,6 @@ export default function Register() {
   async function processSubmit(data: FormValues) {
     const email = data.email.toLowerCase();
     const { password } = data;
-    // console.log('data', data.email);
-    // console.log('password', password);
 
     setSubmitting(true);
     try {
@@ -37,7 +35,16 @@ export default function Register() {
         session_duration_minutes: 1000,
       });
       console.log('You registered successfully', resp);
-    } catch (err) {
+    } catch (err: any) {
+      if (err.error_type === 'email_not_found') {
+        alert('Email not found, please create an account.');
+      }
+      if (err.error_type === 'duplicate_email') {
+        alert('Sorry, this email already exists.');
+      }
+      if (err.error_type === 'unauthorized_credentials') {
+        alert('Sorry, the password was incorrect.');
+      }
       console.log('There was an Error', err);
     }
     setSubmitting(false);
@@ -50,7 +57,7 @@ export default function Register() {
           <div className="registerContainer">
             <img src={Logo} className="logoImage" alt="Ice Breaker" />
             <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
-              Sign up to start your Ice Breaker experience!
+              Sign up to start your IceBreaker experience!
             </Typography>
             <TextField
               error={!!errors.email}
