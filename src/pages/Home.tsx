@@ -18,7 +18,7 @@ function Home({
   setRoomInfo,
   setInCall,
 }: {
-  uid: undefined | number;
+  uid: number;
   setRoomInfo: React.Dispatch<React.SetStateAction<RoomInfo | undefined>>;
   setInCall: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
