@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,9 +6,8 @@ import { TextField, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { Link } from 'react-router-dom';
 // images / Styles
+import { Fade } from 'react-awesome-reveal';
 import Logo from '../../../assets/logos/IBLogo.png';
-
-// const Fade = require('react-reveal/Fade');
 
 type FormValues = {
   email: string;
@@ -47,60 +44,60 @@ export default function Register() {
   }
 
   return (
-    <div className="rootContainer">
-      {/* <Fade top> */}
-      <form className="form" onSubmit={handleSubmit(processSubmit)}>
-        <div className="registerContainer">
-          <img src={Logo} className="logoImage" alt="Ice Breaker" />
-          <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
-            Sign up to start your Ice Breaker experience!
-          </Typography>
-          <TextField
-            error={!!errors.email}
-            label="Email"
-            fullWidth
-            size="small"
-            {...register('email', {
-              required: true,
-              pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-            })}
-            sx={{ marginBottom: 2 }}
-          />
-          <TextField
-            error={!!errors.password}
-            label="Password"
-            fullWidth
-            type="password"
-            size="small"
-            {...register('password', {
-              required: true,
-              pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}/,
-            })}
-            helperText="Minimum 8 characters, 1 lowercase, 1 uppercase and 1 number."
-          />
+    <Fade direction="down">
+      <div className="rootContainer">
+        <form className="form" onSubmit={handleSubmit(processSubmit)}>
+          <div className="registerContainer">
+            <img src={Logo} className="logoImage" alt="Ice Breaker" />
+            <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
+              Sign up to start your Ice Breaker experience!
+            </Typography>
+            <TextField
+              error={!!errors.email}
+              label="Email"
+              fullWidth
+              size="small"
+              {...register('email', {
+                required: true,
+                pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              })}
+              sx={{ marginBottom: 2 }}
+            />
+            <TextField
+              error={!!errors.password}
+              label="Password"
+              fullWidth
+              type="password"
+              size="small"
+              {...register('password', {
+                required: true,
+                pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8}/,
+              })}
+              helperText="Minimum 8 characters, 1 lowercase, 1 uppercase and 1 number."
+            />
 
-          <input type="submit" style={{ display: 'none' }} />
-          <LoadingButton
-            variant="contained"
-            fullWidth
-            size="large"
-            loading={submitting}
-            // loadingPosition={'end'}
-            onClick={handleSubmit(processSubmit)}
-            sx={{ marginTop: 3, marginBottom: 1 }}
-          >
-            Register
-          </LoadingButton>
-          <Typography className="font1" sx={{ marginRight: 0.8 }}>
-            Already registered?{' '}
-            <Link className="link" to="/login">
-              Login here.
-            </Link>
-          </Typography>
-        </div>
-        <Typography sx={{ marginTop: 1 }}>Powered by Ice Breaker</Typography>
-      </form>
-      {/* </Fade> */}
-    </div>
+            <input type="submit" style={{ display: 'none' }} />
+            <LoadingButton
+              variant="contained"
+              fullWidth
+              size="large"
+              loading={submitting}
+              // loadingPosition={'end'}
+              onClick={handleSubmit(processSubmit)}
+              sx={{ marginTop: 3, marginBottom: 1 }}
+            >
+              Register
+            </LoadingButton>
+            <Typography className="font1" sx={{ marginRight: 0.8 }}>
+              Already registered?
+              <Link className="link" to="/login">
+                Login here.
+              </Link>
+            </Typography>
+          </div>
+          <Typography sx={{ marginTop: 1 }}>Powered by Ice Breaker</Typography>
+        </form>
+      </div>
+    </Fade>
   );
 }
