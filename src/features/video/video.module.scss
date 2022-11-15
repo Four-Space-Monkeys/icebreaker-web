@@ -4,12 +4,21 @@
 $color-primary: rgb(0, 185, 0);
 $color-white: #fff;
 $light-grey:#f5f5f5;
+$border-line: rgba(51, 51, 51, 0.1);
 $background-with-opacity: rgba(245, 245, 245, 0.2);
 $padding: 0.8rem;
 $border-radius: 10px;
 
-*{
-  outline: 1px solid $color-primary;
+* {
+  // outline: 1px solid $color-primary;
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+  }
 }
 
 /******* Video Call *******/
@@ -23,10 +32,42 @@ $border-radius: 10px;
 }
 .videoRoomName {
   display: flex;
+  align-items: center;
   gap: 10px;
   padding: $padding 0;
-  align-items: center;
   font-size: 1.5rem;
+  border-bottom: $border-line 2px solid;
+}
+
+.leave {
+  background-color: $light-grey;
+  border-radius: $border-radius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: $padding;
+  > img {
+    filter: invert(55%) sepia(0%) saturate(72%) hue-rotate(229deg) brightness(91%) contrast(83%);
+    height: 1rem;
+    width: 1rem;
+  }
+}
+
+.roomName {
+  font-size: 1rem;
+  font-weight: 600;
+  
+}
+
+.interestBar {
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: darkblue;
+  background-color: lightsteelblue;
+  padding: 0.3rem 0.5rem;
+  border-radius: $border-radius;
 }
 
 .chatData {
@@ -124,3 +165,23 @@ $border-radius: 10px;
   padding: 10px;
 }
 
+.controlsIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  &:hover {
+    background-color: $light-grey;
+  }
+
+  background-color: $background-with-opacity;
+  border-radius: 50%;
+  padding: 0.3rem;
+  img {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  
+}

@@ -6,6 +6,7 @@ import {
   AgoraVideoPlayer,
 } from 'agora-rtc-react';
 import Controls from './Controls';
+import LeftArrow from '../../assets/icons/chevron_left_FILL0_wght400_GRAD0_opsz48.svg';
 import styles from './video.module.scss';
 
 interface IVideoCallProps {
@@ -33,12 +34,23 @@ function VideoChat({
   return (
     <div id="video-ctn" className={styles.videoCtn}>
       <div id="video-roomName" className={styles.videoRoomName}>
-        <button type="button">Leave</button>
-        <div>Overview of new real estate proposals</div>
-        <div>Show interest bar here</div>
+        <button
+          className={styles.leave}
+          type="button"
+          onClick={() => console.log('leave!')}
+        >
+          <img src={LeftArrow} alt="back" />
+        </button>
+        <div className={styles.roomName}>
+          Overview of new real estate proposals
+        </div>
+        <div className={styles.interestBar}>Engineering</div>
       </div>
       <div id="video-chat-data" className={styles.chatData}>
-        Some chat info here
+        <div>
+          <div>Connected to the call:</div>
+          <span>2</span>
+        </div>
         <button type="button" className={styles.request}>
           Some Button
         </button>
@@ -82,12 +94,9 @@ function VideoChat({
                 id="video--client"
                 videoTrack={userVideoTrack}
                 className={styles.sideVideoPlayer}
-                // style={{ height: '150px', width: '150px' }}
               />
             ) : (
-              <div className={styles.sideVideoPlayer}>
-                No Video Track
-              </div>
+              <div className={styles.sideVideoPlayer}>No Video Track</div>
             )}
           </div>
           <Controls
