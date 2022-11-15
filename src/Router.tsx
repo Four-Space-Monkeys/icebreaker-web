@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter, Route, Routes,
 } from 'react-router-dom';
-import { useStytchSession, useStytch } from '@stytch/react';
+import { useStytchSession } from '@stytch/react';
 import Auth from './features/AuthStack/Auth';
 import App from './App';
 import Authenticate from './pages/Authenticate';

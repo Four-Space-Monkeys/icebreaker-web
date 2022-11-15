@@ -80,7 +80,7 @@ export default function ResetPassword() {
               </Link>
             </Typography>
           </div>
-          <Typography sx={{ marginTop: 1 }}>Powered by Ice Breaker</Typography>
+          <Typography sx={{ marginTop: 1 }}>Powered by IceBreaker</Typography>
         </form>
       </div>
     </Fade>
