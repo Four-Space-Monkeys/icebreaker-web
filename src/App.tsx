@@ -3,7 +3,7 @@ import { useStytchSession } from '@stytch/react';
 import MenuBar from './layout/menubar/MenuBar';
 import Home from './pages/Home';
 import VideoCallPage from './pages/VideoCallPage';
-import styles from './layout/menubar/MenuBar.module.scss';
+import styles from './App.module.scss';
 import { RoomInfo } from './types';
 
 function App() {
@@ -22,12 +22,18 @@ function App() {
   return (
     <div id="App" className={styles.app}>
       <MenuBar uid={uid} />
-      <div id="main-screen" className={styles.mainScreen}>
-        {inCall && roomInfo ? (
-          <VideoCallPage uid={uid} roomInfo={roomInfo} setInCall={setInCall} />
-        ) : (
-          <Home uid={uid} setRoomInfo={setRoomInfo} setInCall={setInCall} />
-        )}
+      <div id="main-ctn" className={styles.mainCtn}>
+        <div className={styles.mainView}>
+          {inCall && roomInfo ? (
+            <VideoCallPage
+              uid={uid}
+              roomInfo={roomInfo}
+              setInCall={setInCall}
+            />
+          ) : (
+            <Home uid={uid} setRoomInfo={setRoomInfo} setInCall={setInCall} />
+          )}
+        </div>
       </div>
     </div>
   );
