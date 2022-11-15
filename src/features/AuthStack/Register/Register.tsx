@@ -36,14 +36,8 @@ export default function Register() {
       });
       console.log('You registered successfully', resp);
     } catch (err: any) {
-      if (err.error_type === 'email_not_found') {
-        alert('Email not found, please create an account.');
-      }
       if (err.error_type === 'duplicate_email') {
         alert('Sorry, this email already exists.');
-      }
-      if (err.error_type === 'unauthorized_credentials') {
-        alert('Sorry, the password was incorrect.');
       }
       console.log('There was an Error', err);
     }

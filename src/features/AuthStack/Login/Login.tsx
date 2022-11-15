@@ -38,7 +38,13 @@ export default function Login() {
         session_duration_minutes: 1000,
       });
       console.log('You logged in successfully', resp);
-    } catch (err) {
+    } catch (err: any) {
+      if (err.error_type === 404) {
+        alert('Email not found, please create an account.');
+      }
+      if (err.status_code === 401) {
+        alert('Sorry, the password was incorrect.');
+      }
       console.log('There was an Error', err);
     }
     setSubmitting(false);
