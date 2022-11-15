@@ -27,14 +27,9 @@ $light-grey:#f5f5f5;
 
 .mainView {
     display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100%;
-    max-width: $desktop;
+    max-width: $tablet;
     padding: 10px;
-    background-color: skyblue;
-    // margin: 0 auto;
-
 }
 
 @include up-to-breakpoint($mobile) {    

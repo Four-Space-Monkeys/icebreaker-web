@@ -34,8 +34,6 @@ $color-white: #fff;
 }
 
 @include up-to-breakpoint($mobile) {
-
-  
     .menuBar {
         flex-direction: row;
         justify-content: space-between;

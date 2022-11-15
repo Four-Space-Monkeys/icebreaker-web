@@ -1,46 +1,97 @@
 /************************** Video Call Page *******************************/
 
+
+$color-primary: rgb(0, 185, 0);
+$color-white: #fff;
+$light-grey:#f5f5f5;
+
+$padding: 0.8rem;
+$border-radius: 10px;
+
+*{
+  // outline: 1px solid $color-primary;
+}
+
 /******* Video Call *******/
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100%;
-    max-width: 800px;
-    outline: 10px solid black;
-    margin: 0 auto;
-}
-
-.videoTrack {
+.videoCtn {
   flex: 1;
-  outline: 1px solid red;
-  // background-color: skyblue;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
+  margin: 12px;
+  // outline: 10px solid black;
+}
+.videoRoomName {
+  display: flex;
+  gap: 10px;
+  padding: $padding 0;
+  align-items: center;
+  font-size: 1.5rem;
 }
 
-.videoContainer {
-
-  width: 100%;
-  height: 100%;
+.chatData {
+  padding: 0.6em 1rem;
 }
 
-/******* User *******/
+/******* Video Main *******/
+.videoMain {
+  > * {
+    color: $light-grey
+  }
+  flex: 1;
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  border-radius: $border-radius;
+  overflow: hidden;
+}
 
-.user {
+/******* Video Overlay *******/
+.overlays {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: $padding;
 }
-/******* Video *******/
 
-/******* Controls *******/
+.userInfo {
+  display: flex;
+}
+.timer {
+  justify-self: center;
+  > div {
+    padding: $padding;
+    border-radius: $border-radius;
+    background-color: rgba(245, 245, 245, 0.204);
+  }
+}
+
+.sideVideo {
+  // justify self to corner
+  justify-self: end;
+  div {
+    border-radius: 20px;
+  }
+  > div {
+    border: 3px solid $light-grey;
+  }
+}
+/******* Footer *******/
+.footer {
+  padding: 1em;
+}
+/************************** Controls *******************************/
 .controlsCtn {
+  align-self: end;
+  grid-column: 1 / span 3;
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 10px;
   padding: 10px;
-  background: grey;
 }
+

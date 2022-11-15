@@ -24,10 +24,13 @@ function App() {
       <MenuBar uid={uid} />
       <div id="main-ctn" className={styles.mainCtn}>
         <div className={styles.mainView}>
-          {inCall && roomInfo ? (
+          {!inCall && !roomInfo ? (
             <VideoCallPage
               uid={uid}
-              roomInfo={roomInfo}
+              roomInfo={{
+                channel: 'testing',
+                token: '007eJxTYPB9PG9yf8Wuq+snznRexpaxSuPszxeSf+duybttnn2aVeCFAkNaorGRcXKiaYqxiZGJkaFpkrm5ZYqpgVmShVlKkrGJ2ZJ/RckNgYwMax/oMzIyQCCIz85QklpckpmXzsAAAHd9Iz8=',
+              }}
               setInCall={setInCall}
             />
           ) : (

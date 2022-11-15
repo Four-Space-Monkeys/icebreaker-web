@@ -14,7 +14,11 @@ function VideoCallPage({
 }) {
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    start, setStart, audioTrack, videoTrack, users,
+    start,
+    setStart,
+    audioTrack,
+    videoTrack,
+    users,
   } = useAgora(
     uid,
     roomInfo.channel,
