@@ -9,6 +9,7 @@ import Controls from './Controls';
 import LeftArrow from '../../assets/icons/chevron_left_FILL0_wght400_GRAD0_opsz48.svg';
 import videoOff from '../../assets/icons/videocam_off_FILL0_wght400_GRAD0_opsz48.svg';
 import add from '../../assets/icons/add_FILL0_wght400_GRAD0_opsz48.svg';
+import group from '../../assets/icons/group_FILL0_wght400_GRAD0_opsz48.svg';
 import styles from './video.module.scss';
 import { useClient } from '../../utils/settings';
 
@@ -64,10 +65,9 @@ function VideoChat({
       </div>
       <div id="video-chat-data" className={styles.chatData}>
         <div className={styles.connectedData}>
-          <div>
-            Connected to the call:
-            <span>2</span>
-          </div>
+          <img src={group} alt={group} />
+          <span>Connected to the call:</span>
+          <span>2</span>
         </div>
         <button type="button" className={styles.addRequest}>
           <div>
