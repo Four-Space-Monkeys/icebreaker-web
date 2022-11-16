@@ -8,6 +8,7 @@ import {
 import Controls from './Controls';
 import LeftArrow from '../../assets/icons/chevron_left_FILL0_wght400_GRAD0_opsz48.svg';
 import videoOff from '../../assets/icons/videocam_off_FILL0_wght400_GRAD0_opsz48.svg';
+import add from '../../assets/icons/add_FILL0_wght400_GRAD0_opsz48.svg';
 import styles from './video.module.scss';
 import { useClient } from '../../utils/settings';
 
@@ -63,11 +64,16 @@ function VideoChat({
       </div>
       <div id="video-chat-data" className={styles.chatData}>
         <div className={styles.connectedData}>
-          <div>Connected to the call:</div>
-          <span>2</span>
+          <div>
+            Connected to the call:
+            <span>2</span>
+          </div>
         </div>
-        <button type="button" className={styles.request}>
-          Add friends
+        <button type="button" className={styles.addRequest}>
+          <div>
+            <img src={add} alt="add" />
+          </div>
+          <span>Friend Request</span>
         </button>
       </div>
       <div id="video-main" className={styles.videoMain} ref={videoRef}>
@@ -94,7 +100,7 @@ function VideoChat({
         )}
         <div id="video-overlays" className={styles.overlays}>
           <div id="video--user-info" className={styles.userInfo}>
-            <div className={styles.userProfile}>P</div>
+            <div className={styles.userProfile}>H</div>
             <div>
               <div className={styles.userTitle}>Software Engineer</div>
               <div className={styles.userName}>Heemo Yang</div>
