@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.isSelected {
+  border-right: rgb(0, 185, 0) 2px solid;
+  color: #fff;
+}
+
+.tab {
+  width: 100%;
+}/*# sourceMappingURL=MenuBar.module.css.map */
