@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 // Images / Styling
 import './Login.css';
 import { Fade } from 'react-awesome-reveal';
-import Logo from '../../../assets/logos/IBLogo.png';
+import Logo from '../../../assets/logos/images/Logo.png';
 
 type FormValues = {
   email: string;
