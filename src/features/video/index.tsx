@@ -59,7 +59,7 @@ function VideoChat({
           <img src={LeftArrow} alt="back" />
         </button>
         <div className={styles.roomName}>
-          Overview of new real estate proposals
+          Breaking the Ice
         </div>
         <div className={styles.interestBar}>Engineering</div>
       </div>
@@ -133,7 +133,7 @@ function VideoChat({
         </div>
       </div>
       <div id="video-footer" className={styles.footer}>
-        Ads
+        {/* Ads */}
       </div>
     </div>
   );
