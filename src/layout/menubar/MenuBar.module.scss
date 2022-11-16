@@ -3,6 +3,7 @@
 $color-primary:#01a389;
 $color-white: #fff;
 $logo-color: #BFC5CF;
+$logo-bgColor:#e0f4f1;
 /************************** Layout: MenuBar *******************************/
 
 /******* MenuBar *******/
@@ -79,10 +80,20 @@ $logo-color: #BFC5CF;
 }
 
 .isSelected {
-  background-color: #e0f4f1;
+  background-color: $logo-bgColor;
   border-radius: 10px;
   img {
     filter: invert(47%) sepia(24%) saturate(2690%) hue-rotate(133deg) brightness(91%) contrast(99%);
+  }
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -24px;
+    height: 40px;
+    border-radius: 50%;
+    outline: 2px solid $color-primary;
   }
 }
 
