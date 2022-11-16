@@ -7,7 +7,11 @@ import {
 } from 'agora-rtc-react';
 import Controls from './Controls';
 import LeftArrow from '../../assets/icons/chevron_left_FILL0_wght400_GRAD0_opsz48.svg';
+import videoOff from '../../assets/icons/videocam_off_FILL0_wght400_GRAD0_opsz48.svg';
 import styles from './video.module.scss';
+import { useClient } from '../../utils/settings';
+
+// come back for volume control !!!
 
 interface IVideoCallProps {
   users: IAgoraRTCRemoteUser[];
@@ -25,19 +29,30 @@ function VideoChat({
   setInCall,
   setStart,
 }: IVideoCallProps) {
-  // useEffect(() => {
-  //   setGridSpacing(Math.max(Math.floor(12 / (users?.length || 0 + 1)), 4));
-  // }, [users, audioTrack, videoTrack]);
-
   const { videoTrack: userVideoTrack } = users.length > 0 ? users[0] : { videoTrack: null };
   const videoRef = useRef<HTMLDivElement>(null);
+  const client = useClient();
+
+  const leaveChannel = async () => {
+    await client.leave();
+    client.removeAllListeners();
+    audioTrack.close();
+    localVideoTrack.close();
+    setStart(false);
+    setInCall(false);
+  };
+  const leaveCallAndHome = async () => {
+    leaveChannel();
+    window.location.href = '/'; // navigate to home
+  };
+
   return (
     <div id="video-ctn" className={styles.videoCtn}>
       <div id="video-roomName" className={styles.videoRoomName}>
         <button
           className={styles.leave}
           type="button"
-          onClick={() => console.log('leave!')}
+          onClick={() => leaveCallAndHome()}
         >
           <img src={LeftArrow} alt="back" />
         </button>
@@ -47,12 +62,12 @@ function VideoChat({
         <div className={styles.interestBar}>Engineering</div>
       </div>
       <div id="video-chat-data" className={styles.chatData}>
-        <div>
+        <div className={styles.connectedData}>
           <div>Connected to the call:</div>
           <span>2</span>
         </div>
         <button type="button" className={styles.request}>
-          Some Button
+          Add friends
         </button>
       </div>
       <div id="video-main" className={styles.videoMain} ref={videoRef}>
@@ -96,15 +111,18 @@ function VideoChat({
                 className={styles.sideVideoPlayer}
               />
             ) : (
-              <div className={styles.sideVideoPlayer}>No Video Track</div>
+              <div className={styles.sideVideoPlayer}>
+                <div className={styles.sideVideoOff}>
+                  <img src={videoOff} alt="Video off" />
+                </div>
+              </div>
             )}
           </div>
           <Controls
             audioTrack={audioTrack}
             videoTrack={localVideoTrack}
-            setStart={setStart}
-            setInCall={setInCall}
             videoRef={videoRef}
+            leaveChannel={leaveChannel}
           />
         </div>
       </div>

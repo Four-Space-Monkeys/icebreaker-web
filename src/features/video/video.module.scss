@@ -134,7 +134,6 @@ $border-radius: 10px;
     width: 80px;
     height: 30px;
     padding: 0.3rem $padding;
-    border: 1px solid $light-grey;
     border-radius: $border-radius;
     background-color: $background-with-opacity;
     font-size: 0.5rem;
@@ -150,18 +149,35 @@ $border-radius: 10px;
   justify-self: end;
   
   div {
-    border-radius: 20px;
+    border-radius: 2rem;
   }
   > div {
-    border: 3px solid $light-grey;
+    border: 6px solid $color-white;
   }
-   .sideVideoPlayer {
+  .sideVideoPlayer {
     display: flex;
-    background-color: $background-with-opacity;
+    background-color: hsla(0, 0%, 96%, 0.5);
     justify-content: center;
     align-items: center;
     width: 150px;
     height: 150px;
+    position: relative;
+    .sideVideoOff {
+        background-color: #fc5d5c;
+        padding: 0.5rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+    img {
+      filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(26deg) brightness(104%) contrast(102%);
+      height: 1rem;
+      width: 1rem;
+    }
   }
 }
 
@@ -189,6 +205,7 @@ $border-radius: 10px;
   align-items: center;
   gap: 10px;
   padding: 10px;
+
   img {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(26deg) brightness(104%) contrast(102%);
   }

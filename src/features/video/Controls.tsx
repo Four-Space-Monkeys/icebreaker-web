@@ -8,25 +8,22 @@ import endCall from '../../assets/icons/call_end_FILL0_wght400_GRAD0_opsz48.svg'
 import videoOn from '../../assets/icons/videocam_FILL0_wght400_GRAD0_opsz48.svg';
 import videoOff from '../../assets/icons/videocam_off_FILL0_wght400_GRAD0_opsz48.svg';
 import settings from '../../assets/icons/settings_FILL0_wght400_GRAD0_opsz48.svg';
-import { useClient } from '../../utils/settings';
 import styles from './video.module.scss';
 
 interface IControlsProps {
   audioTrack: IMicrophoneAudioTrack;
   videoTrack: ICameraVideoTrack;
-  setStart: React.Dispatch<React.SetStateAction<boolean>>;
-  setInCall: React.Dispatch<React.SetStateAction<boolean>>;
   videoRef: React.RefObject<HTMLDivElement>;
+  leaveChannel: () => void;
 }
 
 function Controls({
+
   audioTrack,
   videoTrack,
-  setStart,
-  setInCall,
   videoRef,
+  leaveChannel,
 }: IControlsProps) {
-  const client = useClient();
   const [trackState, setTrackState] = useState({ video: true, audio: true });
   const [fullScreenMode, setFullScreenMode] = useState(false);
 
@@ -55,14 +52,6 @@ function Controls({
     // if use wants to join another channel
   };
 
-  const leaveChannel = async () => {
-    await client.leave();
-    client.removeAllListeners();
-    audioTrack.close();
-    videoTrack.close();
-    setStart(false);
-    setInCall(false);
-  };
   return (
     <div className={styles.controlsCtn}>
       <div>
@@ -123,7 +112,7 @@ function Controls({
         <button
           className={styles.controlsIcon}
           type="button"
-          onClick={() => console.log('settings')}
+          onClick={() => alert('settings')}
         >
           <img src={settings} alt="settings" />
         </button>
