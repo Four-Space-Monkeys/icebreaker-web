@@ -3,9 +3,9 @@ import { useStytchSession } from '@stytch/react';
 import { BarLoader } from 'react-spinners';
 import axios from 'axios';
 import MenuBar from './layout/menubar/MenuBar';
-import Home from './pages/Home';
 import VideoCallPage from './pages/VideoCallPage';
 import { RoomInfo, User } from './types';
+import QueuePage from './pages/QueuePage';
 
 function App() {
   const [user, setUser] = useState<undefined | User>(undefined);
@@ -39,7 +39,13 @@ function App() {
           {inCall && roomInfo ? (
             <VideoCallPage uid={user.id} roomInfo={roomInfo} setInCall={setInCall} />
           ) : (
-            <Home uid={user.id} setRoomInfo={setRoomInfo} setInCall={setInCall} />
+            <QueuePage
+              uid={user.id}
+              firstName={user.firstName}
+              interests={user.interests}
+              setRoomInfo={setRoomInfo}
+              setInCall={setInCall}
+            />
           )}
         </div>
       </div>
