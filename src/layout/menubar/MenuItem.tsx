@@ -1,5 +1,7 @@
 import React from 'react';
-import Home from '../../assets/icons/home_FILL0_wght400_GRAD0_opsz48.svg';
+import home from '../../assets/icons/home_FILL0_wght400_GRAD0_opsz48.svg';
+import video from '../../assets/icons/videocam_FILL0_wght400_GRAD0_opsz48.svg';
+import setting from '../../assets/icons/settings_FILL0_wght400_GRAD0_opsz48.svg';
 import styles from './MenuBar.module.scss';
 
 export default function MenuItem({
@@ -9,6 +11,22 @@ export default function MenuItem({
   tabHandler: Function;
   tab: string;
 }) {
+  let icons = null;
+
+  switch (tab) {
+    case 'Home':
+      icons = home;
+      break;
+    case 'Video':
+      icons = video;
+      break;
+    case 'Settings':
+      icons = setting;
+      break;
+    default:
+      icons = home;
+  }
+
   return (
     <div
       id={tab}
@@ -19,7 +37,7 @@ export default function MenuItem({
         type="button"
         onClick={() => tabHandler(tab)}
       >
-        <img src={Home} alt="home" />
+        <img src={icons} alt={tab} />
       </button>
     </div>
   );

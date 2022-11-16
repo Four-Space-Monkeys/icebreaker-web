@@ -1,7 +1,8 @@
 @import '../../assets/stylesheets/globals/media';
 
-$color-primary: rgb(0, 185, 0);
+$color-primary:#01a389;
 $color-white: #fff;
+$logo-color: #BFC5CF;
 /************************** Layout: MenuBar *******************************/
 
 /******* MenuBar *******/
@@ -21,7 +22,7 @@ $color-white: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #d9dce3;
+    background-color: $logo-color;
     color: $color-white;
 }
 
@@ -55,13 +56,21 @@ $color-white: #fff;
 
 .menuItem {
     button{
-    background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 10px;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        filter: invert(78%) sepia(7%) saturate(299%) hue-rotate(179deg) brightness(101%) contrast(89%);
+        height: 1rem;
+        width: 1rem;
     }
 }
 
@@ -70,7 +79,10 @@ $color-white: #fff;
 }
 
 .isSelected {
-  border-right: $color-primary 2px solid;
-  color: $color-primary;
+  background-color: #e0f4f1;
+  border-radius: 10px;
+  img {
+    filter: invert(47%) sepia(24%) saturate(2690%) hue-rotate(133deg) brightness(91%) contrast(99%);
+  }
 }
 
