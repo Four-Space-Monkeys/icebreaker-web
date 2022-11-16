@@ -103,8 +103,31 @@ $border-radius: 10px;
 }
 
 .userInfo {
+  justify-self: start;
   display: flex;
 }
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  height: 2rem;
+  width: 2rem;
+  border-radius: $border-radius;
+  margin-right: 10px;
+  background-color: $background-with-opacity;
+}
+
+.userTitle {
+  font-size: 0.6rem;
+  font-weight: 400;
+}
+.userName {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
 .timer {
   justify-self: center;
   > div {

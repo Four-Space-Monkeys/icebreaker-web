@@ -79,10 +79,10 @@ function VideoChat({
         )}
         <div id="video-overlays" className={styles.overlays}>
           <div id="video--user-info" className={styles.userInfo}>
-            <div>profile</div>
+            <div className={styles.userProfile}>P</div>
             <div>
-              <div>user title</div>
-              <div>user name</div>
+              <div className={styles.userTitle}>Software Engineer</div>
+              <div className={styles.userName}>Heemo Yang</div>
             </div>
           </div>
           <div id="video--timer" className={styles.timer}>
