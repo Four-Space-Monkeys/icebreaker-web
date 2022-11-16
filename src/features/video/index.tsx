@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   IAgoraRTCRemoteUser,
   ICameraVideoTrack,
@@ -30,7 +30,7 @@ function VideoChat({
   // }, [users, audioTrack, videoTrack]);
 
   const { videoTrack: userVideoTrack } = users.length > 0 ? users[0] : { videoTrack: null };
-
+  const videoRef = useRef<HTMLDivElement>(null);
   return (
     <div id="video-ctn" className={styles.videoCtn}>
       <div id="video-roomName" className={styles.videoRoomName}>
@@ -55,7 +55,7 @@ function VideoChat({
           Some Button
         </button>
       </div>
-      <div id="video-main" className={styles.videoMain}>
+      <div id="video-main" className={styles.videoMain} ref={videoRef}>
         {localVideoTrack ? (
           <AgoraVideoPlayer
             id="video--local"
@@ -104,6 +104,7 @@ function VideoChat({
             videoTrack={localVideoTrack}
             setStart={setStart}
             setInCall={setInCall}
+            videoRef={videoRef}
           />
         </div>
       </div>

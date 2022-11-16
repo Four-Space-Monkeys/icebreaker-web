@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ICameraVideoTrack, IMicrophoneAudioTrack } from 'agora-rtc-react';
+import fullScreen from '../../assets/icons/fullscreen_FILL0_wght400_GRAD0_opsz48.svg';
+import fullScreenExit from '../../assets/icons/close_fullscreen_FILL0_wght400_GRAD0_opsz48.svg';
 import micOn from '../../assets/icons/mic_FILL0_wght400_GRAD0_opsz48.svg';
 import micOff from '../../assets/icons/mic_off_FILL0_wght400_GRAD0_opsz48 (1).svg';
+import endCall from '../../assets/icons/call_end_FILL0_wght400_GRAD0_opsz48.svg';
 import videoOn from '../../assets/icons/videocam_FILL0_wght400_GRAD0_opsz48.svg';
 import videoOff from '../../assets/icons/videocam_off_FILL0_wght400_GRAD0_opsz48.svg';
-import exit from '../../assets/icons/exit_to_app_FILL0_wght400_GRAD0_opsz48.svg';
+import settings from '../../assets/icons/settings_FILL0_wght400_GRAD0_opsz48.svg';
 import { useClient } from '../../utils/settings';
 import styles from './video.module.scss';
 
@@ -13,13 +16,27 @@ interface IControlsProps {
   videoTrack: ICameraVideoTrack;
   setStart: React.Dispatch<React.SetStateAction<boolean>>;
   setInCall: React.Dispatch<React.SetStateAction<boolean>>;
+  videoRef: React.RefObject<HTMLDivElement>;
 }
 
 function Controls({
-  audioTrack, videoTrack, setStart, setInCall,
+  audioTrack,
+  videoTrack,
+  setStart,
+  setInCall,
+  videoRef,
 }: IControlsProps) {
   const client = useClient();
   const [trackState, setTrackState] = useState({ video: true, audio: true });
+  const [fullScreenMode, setFullScreenMode] = useState(false);
+
+  useEffect(() => {
+    function onFullscreenChange() {
+      setFullScreenMode(Boolean(document.fullscreenElement));
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
+  }, []);
 
   const mute = async (type: string) => {
     if (type === 'audio') {
@@ -52,13 +69,41 @@ function Controls({
         <button
           className={styles.controlsIcon}
           type="button"
+          onClick={() => {
+            if (!fullScreenMode) {
+              videoRef.current?.requestFullscreen({
+                navigationUI: 'hide',
+              });
+            } else document.exitFullscreen();
+          }}
+        >
+          {fullScreenMode ? (
+            <img src={fullScreenExit} alt="fullScreen exit" />
+          ) : (
+            <img src={fullScreen} alt="fullScreen" />
+          )}
+        </button>
+      </div>
+      <div>
+        <button
+          className={styles.controlsIcon}
+          type="button"
           onClick={() => mute('audio')}
         >
           {trackState.audio ? (
-            <img src={micOn} alt="mic" />
+            <img src={micOn} alt="mic on" />
           ) : (
-            <img src={micOff} alt="mic" />
+            <img src={micOff} alt="mic off" />
           )}
+        </button>
+      </div>
+      <div>
+        <button
+          className={`${styles.controlsIcon} ${styles.endCall}`}
+          type="button"
+          onClick={() => leaveChannel()}
+        >
+          <img src={endCall} alt="end call" />
         </button>
       </div>
       <div>
@@ -67,16 +112,20 @@ function Controls({
           type="button"
           onClick={() => mute('video')}
         >
-          {trackState.video ? <img src={videoOn} alt="video" /> : <img src={videoOff} alt="video" />}
+          {trackState.video ? (
+            <img src={videoOn} alt="video on" />
+          ) : (
+            <img src={videoOff} alt="video off" />
+          )}
         </button>
       </div>
       <div>
         <button
           className={styles.controlsIcon}
           type="button"
-          onClick={() => leaveChannel()}
+          onClick={() => console.log('settings')}
         >
-          <img src={exit} alt="exit" />
+          <img src={settings} alt="settings" />
         </button>
       </div>
     </div>
