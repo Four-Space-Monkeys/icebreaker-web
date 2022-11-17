@@ -9,7 +9,7 @@ import { LoadingButton } from '@mui/lab';
 import { Link } from 'react-router-dom';
 
 // Images / Styling
-import './Login.css';
+import styles from '';
 import { Fade } from 'react-awesome-reveal';
 import Logo from '../../../assets/logos/Logo.png';
 import TextLogo from '../../../assets/logos/icebreaker-text-logo.png';
