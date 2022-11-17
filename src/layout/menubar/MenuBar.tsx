@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useStytch } from '@stytch/react';
 import MenuItem from './MenuItem';
 import Logo from '../../assets/icons/Logo.png';
 import styles from './MenuBar.module.scss';
 
-const MENU_ITEMS = ['Home', 'Video', 'Settings'];
+const MENU_ITEMS = ['Home', 'Video', 'Settings', 'Logout'];
 
 function MenuBar({ firstName }: { firstName: string }) {
+  const client = useStytch();
   const [selectedTab, setSelectedTab] = useState('Home');
 
-  const tabHandler = (tab: string) => {
-    setSelectedTab(tab);
-  };
+  useEffect(() => {
+    const signOut = async () => {
+      await client.session.revoke();
+      alert('Logged Out!');
+    };
+    if (selectedTab === 'Logout') {
+      signOut();
+    }
+  }, [client.session, selectedTab]);
+
+  const tabHandler = (tab: string) => { setSelectedTab(tab); };
 
   return (
     <div id="menubar" className={styles.menuBar}>

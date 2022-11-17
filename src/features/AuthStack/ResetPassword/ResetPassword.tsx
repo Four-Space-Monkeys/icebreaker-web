@@ -7,6 +7,9 @@ import { LoadingButton } from '@mui/lab';
 import { Link } from 'react-router-dom';
 // images / Styles
 import { Fade } from 'react-awesome-reveal';
+import styles from '../Auth.module.scss';
+import Logo from '../../../assets/logos/Logo.png';
+import TextLogo from '../../../assets/logos/icebreaker-text-logo.png';
 
 type FormValues = {
   email: string;
@@ -39,10 +42,12 @@ export default function ResetPassword() {
 
   return (
     <Fade>
-      <div className="rootContainer">
-        <form className="form" onSubmit={handleSubmit(processSubmit)}>
-          <div className="registerContainer">
-            <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
+      <div className={styles.rootContainer}>
+        <form className={styles.form} onSubmit={handleSubmit(processSubmit)}>
+          <div className={styles.interiorContainer}>
+            <img src={Logo} className={styles.logoImage} alt="IceBreaker Logo" />
+            <img src={TextLogo} className={styles.textImage} alt="IceBreaker" />
+            <Typography className={styles.h1} sx={{ marginBottom: 3, marginTop: 6 }}>
               Reset Your Password
             </Typography>
             <TextField
@@ -62,18 +67,19 @@ export default function ResetPassword() {
               fullWidth
               size="large"
               loading={submitting}
+              className={styles.button}
               onClick={handleSubmit(processSubmit)}
               sx={{ marginTop: 3, marginBottom: 1 }}
             >
               Send Reset Email
             </LoadingButton>
-            <Typography className="font1" sx={{ marginRight: 0.8 }}>
+            <Typography className={styles.font1} sx={{ marginRight: 0.8 }}>
               Remember your password?
               <Link className="link" to="/">
                 Login here.
               </Link>
             </Typography>
-            <Typography className="font1" sx={{ marginRight: 0.8 }}>
+            <Typography className={styles.font1} sx={{ marginRight: 0.8 }}>
               Not yet Registered?
               <Link className="link" to="/register">
                 Sign up.
