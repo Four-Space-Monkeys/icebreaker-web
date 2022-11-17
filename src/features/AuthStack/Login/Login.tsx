@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 // Images / Styling
 import './Login.css';
 import { Fade } from 'react-awesome-reveal';
-import Logo from '../../../assets/logos/IBLogo.png';
+import Logo from '../../../assets/logos/Logo.png';
+import TextLogo from '../../../assets/logos/icebreaker-text-logo.png';
 
 type FormValues = {
   email: string;
@@ -39,7 +40,7 @@ export default function Login() {
       });
       console.log('You logged in successfully', resp);
     } catch (err: any) {
-      if (err.error_type === 404) {
+      if (err.status_code === 404) {
         alert('Email not found, please create an account.');
       }
       if (err.status_code === 401) {
@@ -64,8 +65,9 @@ export default function Login() {
         <form className="form" onSubmit={handleSubmit(processSubmit)}>
           <div className="loginContainer">
             <img src={Logo} className="logoImage" alt="IceBreaker Logo" />
+            <img src={TextLogo} className="textImage" alt="IceBreaker" />
             <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
-              Login to Ice Breaker
+              Login to IceBreaker
             </Typography>
             <TextField
               error={!!errors.email}

@@ -169,7 +169,14 @@ $border-radius: 10px;
     z-index: 1;
   }
 }
-
+.noVideoTrack {
+  height: 100%;
+  width: 100%;
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /******* Video Overlay *******/
 .overlays {
   position: absolute;
@@ -212,9 +219,18 @@ $border-radius: 10px;
 }
 
 @include up-to-breakpoint($mobile) {
-  .userName {
-    font-size: 0.9rem;
-  }
+   .userProfile {
+    height: 1.5rem;
+    width: 1.5rem;
+   }
+    .userTitle {
+      font-size: 0.4rem;
+    }
+    .userName {
+      font-size: 0.8rem;
+    }
+    
+
 }
 
 .timer {

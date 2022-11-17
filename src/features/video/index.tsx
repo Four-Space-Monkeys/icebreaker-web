@@ -93,14 +93,6 @@ function VideoChat({
         ) : (
           <div
             className={styles.noVideoTrack}
-            style={{
-              height: '100%',
-              width: '100%',
-              backgroundColor: 'grey',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
           >
             No video track: Please allow camera access and try again.
           </div>
