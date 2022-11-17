@@ -1,8 +1,11 @@
 @import '../../assets/stylesheets/Variables.scss';
 
-.rootContainer {
-  min-height: 100vh;
-  display: flex;
+.button {
+  background-color: green;
+  &:hover {
+    cursor: pointer;
+    background-color: green;
+  }
 }
 
 .form {
@@ -14,7 +17,7 @@
   border-radius: 6px;
   max-width: 480em;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 5px 0px;
-  background-color:white;
+  background-color: white;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -22,16 +25,17 @@
   align-items: center;
 }
 
-.logoImage{
+.logoImage {
   width: 10em;
   // height: 15em;
+}
+
+.rootContainer {
+  min-height: 100vh;
+  display: flex;
 }
 
 .textImage {
   width: 20em;
 }
 
-// .button {
-//   color-scheme: green;
-
-// }

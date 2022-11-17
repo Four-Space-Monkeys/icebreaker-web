@@ -98,6 +98,7 @@ export default function Login() {
               fullWidth
               size="large"
               loading={submitting}
+              className={styles.button}
               onClick={handleSubmit(processSubmit)}
               sx={{ marginTop: 3 }}
             >
@@ -107,6 +108,7 @@ export default function Login() {
               variant="contained"
               fullWidth
               size="large"
+              className={styles.button}
               onClick={() => linkedinOAuth()}
               sx={{ marginTop: 1, marginBottom: 1 }}
             >

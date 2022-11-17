@@ -28,6 +28,7 @@ function App() {
         .then(({ data }) => setUser(data))
         .catch((err) => {
           if (err.response.status === 404) {
+            console.log('response_code', err.response.status);
             setRegisterCheck(true);
           }
           // throw new Error("couldn't find user");
