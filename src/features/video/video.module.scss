@@ -83,6 +83,8 @@ $border-radius: 10px;
       height: 1rem;
       margin-right: 0.2rem;
     }
+
+  
     img + span {
       font-size: 0.8rem;
       font-weight: 500;
@@ -102,7 +104,7 @@ $border-radius: 10px;
       font-weight: 600;
     }
   }
-  
+
   .addRequest {
     display: flex;
     align-items: center;
@@ -127,7 +129,31 @@ $border-radius: 10px;
     }
   }
 }
-
+@include up-to-breakpoint($mobile) {  
+  .chatData {
+    .connectedData {
+      img + span {
+        font-size: 0.6rem;
+      }
+      span + span {
+        font-size: 0.6rem;
+        padding: 0.6rem;
+      }
+    }
+    .addRequest {
+      div {
+        padding: 0.2rem;
+        img {
+          height: 0.4rem;
+          width: 0.4rem;
+        }
+      }
+      span {
+        font-size: 0.6rem;
+      }
+    }
+  }
+}
 /******* Video Main *******/
 .videoMain {
   > * {
@@ -257,9 +283,18 @@ $border-radius: 10px;
   padding: 1em;
   display: flex;
   justify-content: center;
+  img {
+    height: 3rem;
+  }
+}
+@include up-to-breakpoint($mobile) {  
+  .footer {
+    img {
+      height: 2rem;
+    }
+  }
 }
 /************************** Controls *******************************/
-
 
 .controlsCtn {
   align-self: end;
@@ -278,28 +313,6 @@ $border-radius: 10px;
   &:hover {
     opacity: 1;
     animation: fadeIn 1s;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 
@@ -333,5 +346,48 @@ $border-radius: 10px;
 
   &:hover {
     background-color: hsla(0, 96%, 67%, 0.5);
+  }
+}
+
+@include up-to-breakpoint($mobile) {  
+  .controlsCtn {
+    gap: 12px;
+  }
+  .controlsIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.2rem;
+    img {
+      height: 0.8rem;
+      width: 0.8rem;
+    }
+  }
+  .endCall {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 16px;
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import home from '../../assets/icons/home_FILL0_wght400_GRAD0_opsz48.svg';
-import video from '../../assets/icons/videocam_FILL0_wght400_GRAD0_opsz48.svg';
-import setting from '../../assets/icons/settings_FILL0_wght400_GRAD0_opsz48.svg';
+import home from '../../assets/icons/home_black_24dp.svg';
+import video from '../../assets/icons/videocam_black_24dp.svg';
+import setting from '../../assets/icons/settings_black_24dp.svg';
 import styles from './MenuBar.module.scss';
 
 export default function MenuItem({

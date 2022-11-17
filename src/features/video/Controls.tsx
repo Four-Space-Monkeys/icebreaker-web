@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { ICameraVideoTrack, IMicrophoneAudioTrack } from 'agora-rtc-react';
 import fullScreen from '../../assets/icons/fullscreen_FILL0_wght400_GRAD0_opsz48.svg';
 import fullScreenExit from '../../assets/icons/close_fullscreen_FILL0_wght400_GRAD0_opsz48.svg';
-import micOn from '../../assets/icons/mic_FILL0_wght400_GRAD0_opsz48.svg';
-import micOff from '../../assets/icons/mic_off_FILL0_wght400_GRAD0_opsz48 (1).svg';
-import endCall from '../../assets/icons/call_end_FILL0_wght400_GRAD0_opsz48.svg';
-import videoOn from '../../assets/icons/videocam_FILL0_wght400_GRAD0_opsz48.svg';
-import videoOff from '../../assets/icons/videocam_off_FILL0_wght400_GRAD0_opsz48.svg';
-import settings from '../../assets/icons/settings_FILL0_wght400_GRAD0_opsz48.svg';
+import micOn from '../../assets/icons/mic_black_24dp.svg';
+import micOff from '../../assets/icons/mic_off_black_24dp.svg';
+import endCall from '../../assets/icons/call_end_black_24dp.svg';
+import videoOn from '../../assets/icons/videocam_black_24dp.svg';
+import videoOff from '../../assets/icons/videocam_off_black_24dp.svg';
+import settings from '../../assets/icons/settings_black_24dp.svg';
 import styles from './video.module.scss';
 
 interface IControlsProps {

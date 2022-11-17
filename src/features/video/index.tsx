@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import {
   IAgoraRTCRemoteUser,
   ICameraVideoTrack,
@@ -7,9 +7,10 @@ import {
 } from 'agora-rtc-react';
 import Controls from './Controls';
 import LeftArrow from '../../assets/icons/chevron_left_FILL0_wght400_GRAD0_opsz48.svg';
-import videoOff from '../../assets/icons/videocam_off_FILL0_wght400_GRAD0_opsz48.svg';
-import add from '../../assets/icons/add_FILL0_wght400_GRAD0_opsz48.svg';
-import group from '../../assets/icons/group_FILL0_wght400_GRAD0_opsz48.svg';
+import videoOff from '../../assets/icons/videocam_off_black_24dp.svg';
+import add from '../../assets/icons/add_black_24dp.svg';
+import group from '../../assets/icons/group_black_24dp.svg';
+import iceBreakerLogo from '../../assets/logos/icebreaker-text-logo.png';
 import styles from './video.module.scss';
 import { useClient } from '../../utils/settings';
 import useCountDown from '../../hooks/useCountdown';
@@ -37,18 +38,24 @@ function VideoChat({
   const client = useClient();
   const [minutes, seconds] = useCountDown(300);
 
-  const leaveChannel = async () => {
+  const leaveChannel = useCallback(async () => {
     await client.leave();
     client.removeAllListeners();
     audioTrack.close();
     localVideoTrack.close();
     setStart(false);
     setInCall(false);
-  };
+  }, [client, audioTrack, localVideoTrack, setStart, setInCall]);
+
   const leaveCallAndHome = async () => {
     leaveChannel();
     window.location.href = '/'; // navigate to home
   };
+
+  useEffect(() => {
+    // display a warning message when there is only 30 seconds left
+    if (minutes + seconds === 0) leaveChannel();
+  }, [minutes, seconds, leaveChannel]);
 
   return (
     <div id="video-ctn" className={styles.videoCtn}>
@@ -107,7 +114,10 @@ function VideoChat({
             </div>
           </div>
           <div id="video--timer" className={styles.timer}>
-            <div>{`${minutes}:${seconds}`}</div>
+            <div>
+              {`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
+
+            </div>
           </div>
           <div id="video-side" className={styles.sideVideo}>
             {userVideoTrack ? (
@@ -133,7 +143,7 @@ function VideoChat({
         </div>
       </div>
       <div id="video-footer" className={styles.footer}>
-        {/* Ads */}
+        <img src={iceBreakerLogo} alt="icebreaker" />
       </div>
     </div>
   );
