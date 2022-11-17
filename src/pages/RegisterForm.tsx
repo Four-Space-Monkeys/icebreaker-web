@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-import { useStytchSession, useStytch } from '@stytch/react';
+import { useStytchSession } from '@stytch/react';
 // import { useNavigate } from 'react-router-dom';
 // images / Styles
 import { Fade } from 'react-awesome-reveal';
@@ -20,7 +20,6 @@ type FormValues = {
 
 export default function RegisterForm() {
   const { session } = useStytchSession();
-  const client = useStytch();
   // const navigate = useNavigate();
   const [interestOptions, setInterestOptions] = useState([]);
   if (!session) {
@@ -64,11 +63,6 @@ export default function RegisterForm() {
     }
   }
 
-  const handleLogout = useCallback(async () => {
-    await client.session.revoke();
-    alert('Logged Out!');
-  }, [client]);
-
   return (
     <Fade direction="down">
       <div className={styles.rootContainer}>
@@ -77,7 +71,7 @@ export default function RegisterForm() {
             <img src={Logo} className={styles.logoImage} alt="IceBreaker Logo" />
             <img src={TextLogo} className={styles.textImage} alt="IceBreaker" />
             <p className={styles.h2}>
-              Fill out your Profile and choose atleast one interests
+              Fill out your Profile and choose atleast one interest
             </p>
             <input
               className="inputBox"
@@ -121,9 +115,6 @@ export default function RegisterForm() {
               Save
             </button>
           </div>
-          <button type="button" onClick={handleLogout}>
-            Logout
-          </button>
         </form>
       </div>
     </Fade>

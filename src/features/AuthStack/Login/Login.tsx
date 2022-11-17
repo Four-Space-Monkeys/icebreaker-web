@@ -52,7 +52,6 @@ export default function Login() {
   }
 
   async function linkedinOAuth() {
-    console.log('clicked');
     stytchClient.oauth.linkedin.start({
       login_redirect_url: 'http://localhost:3000/authenticate',
       signup_redirect_url: 'http://localhost:3000/authenticate',
