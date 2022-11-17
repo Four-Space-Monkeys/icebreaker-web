@@ -33,8 +33,10 @@ $logo-color: #BFC5CF;
     }
     .selected {
         //highlight selected box
-        box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
-        color: #f54242 !important;
+        box-shadow: 0 0 5px 5px rgba(36, 49, 26, 0.695);
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        outline:rgba(0, 0, 0, 0.2) 1px solid;
+        transform: scale(1.1);
     }
 }
 
