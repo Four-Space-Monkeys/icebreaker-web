@@ -4,20 +4,23 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { useStytchSession, useStytch } from '@stytch/react';
+import { useNavigate } from 'react-router-dom';
 // images / Styles
 import { Fade } from 'react-awesome-reveal';
-// import Logo from '../../../assets/logos/IBLogo.png';
+import Logo from '../assets/logos/Logo.png';
+import TextLogo from '../assets/logos/icebreaker-text-logo.png';
 
 type FormValues = {
   stytchId: string;
   firstName: string;
   lastName: string;
-  interestIds: number;
+  interestIds: number[];
 };
 
 export default function RegisterForm() {
   const { session } = useStytchSession();
   const client = useStytch();
+  const navigate = useNavigate();
   const [interestOptions, setInterestOptions] = useState([]);
   if (!session) {
     throw new Error('stytch id not found');
@@ -42,12 +45,18 @@ export default function RegisterForm() {
   }, [session?.user_id]);
 
   async function processSubmit(data: FormValues) {
-    console.log('here is the data', data);
+    const userData = {
+      stytchId: data.stytchId,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      interestIds: data.interestIds.map((id: number) => Number(id)),
+    };
     try {
-      axios.post('http://localhost:8080/users', {
-        data,
+      const resp = await axios.post('http://localhost:8080/users', {
+        userData,
       });
-      alert('You are now registered');
+      console.log('Reigstration complete', resp);
+      navigate('/');
     } catch (err: any) {
       console.log('There was an error', err);
     }
@@ -63,6 +72,8 @@ export default function RegisterForm() {
       <div className="rootContainer">
         <form className="form" onSubmit={handleSubmit(processSubmit)}>
           <div className="registerContainer">
+            <img src={Logo} className="logoImage" alt="IceBreaker Logo" />
+            <img src={TextLogo} className="textImage" alt="IceBreaker" />
             <p className="header">
               Fill out your Profile and choose atleast one interests
             </p>
