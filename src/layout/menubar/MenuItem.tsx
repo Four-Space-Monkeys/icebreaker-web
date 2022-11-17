@@ -2,6 +2,7 @@ import React from 'react';
 import home from '../../assets/icons/home_black_24dp.svg';
 import video from '../../assets/icons/videocam_black_24dp.svg';
 import setting from '../../assets/icons/settings_black_24dp.svg';
+import logout from '../../assets/icons/logout_black_24dp.svg';
 import styles from './MenuBar.module.scss';
 
 export default function MenuItem({
@@ -22,6 +23,9 @@ export default function MenuItem({
       break;
     case 'Settings':
       icons = setting;
+      break;
+    case 'Logout':
+      icons = logout;
       break;
     default:
       icons = home;

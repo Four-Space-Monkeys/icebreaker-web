@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-import { useStytchSession, useStytch } from '@stytch/react';
-import { useNavigate } from 'react-router-dom';
+import { useStytchSession } from '@stytch/react';
+// import { useNavigate } from 'react-router-dom';
 // images / Styles
 import { Fade } from 'react-awesome-reveal';
+import styles from '../features/AuthStack/auth.module.scss';
 import Logo from '../assets/logos/Logo.png';
 import TextLogo from '../assets/logos/icebreaker-text-logo.png';
 
@@ -19,8 +20,7 @@ type FormValues = {
 
 export default function RegisterForm() {
   const { session } = useStytchSession();
-  const client = useStytch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [interestOptions, setInterestOptions] = useState([]);
   if (!session) {
     throw new Error('stytch id not found');
@@ -45,14 +45,12 @@ export default function RegisterForm() {
   }, [session?.user_id]);
 
   async function processSubmit(data: FormValues) {
-    console.log('data', data);
     const userData = {
       stytchId: data.stytchId,
       firstName: data.firstName,
       lastName: data.lastName,
       interestIds: data.interestIds.map((id: number) => Number(id)),
     };
-    console.log('userData', userData);
     try {
       const resp = await axios.post('http://localhost:8080/users', {
         userData,
@@ -65,20 +63,15 @@ export default function RegisterForm() {
     }
   }
 
-  const handleLogout = useCallback(async () => {
-    await client.session.revoke();
-    alert('Logged Out!');
-  }, [client]);
-
   return (
     <Fade direction="down">
-      <div className="rootContainer">
-        <form className="form" onSubmit={handleSubmit(processSubmit)}>
-          <div className="registerContainer">
-            <img src={Logo} className="logoImage" alt="IceBreaker Logo" />
-            <img src={TextLogo} className="textImage" alt="IceBreaker" />
-            <p className="header">
-              Fill out your Profile and choose atleast one interests
+      <div className={styles.rootContainer}>
+        <form className={styles.form} onSubmit={handleSubmit(processSubmit)}>
+          <div className={styles.interiorContainer}>
+            <img src={Logo} className={styles.logoImage} alt="IceBreaker Logo" />
+            <img src={TextLogo} className={styles.textImage} alt="IceBreaker" />
+            <p className={styles.h2}>
+              Fill out your Profile and choose atleast one interest
             </p>
             <input
               className="inputBox"
@@ -122,9 +115,6 @@ export default function RegisterForm() {
               Save
             </button>
           </div>
-          <button type="button" onClick={handleLogout}>
-            Logout
-          </button>
         </form>
       </div>
     </Fade>

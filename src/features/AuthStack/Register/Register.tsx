@@ -7,7 +7,9 @@ import { LoadingButton } from '@mui/lab';
 import { Link } from 'react-router-dom';
 // images / Styles
 import { Fade } from 'react-awesome-reveal';
-import Logo from '../../../assets/logos/IBLogo.png';
+import styles from '../auth.module.scss';
+import Logo from '../../../assets/logos/Logo.png';
+import TextLogo from '../../../assets/logos/icebreaker-text-logo.png';
 
 type FormValues = {
   email: string;
@@ -46,11 +48,15 @@ export default function Register() {
 
   return (
     <Fade direction="down">
-      <div className="rootContainer">
-        <form className="form" onSubmit={handleSubmit(processSubmit)}>
-          <div className="registerContainer">
-            <img src={Logo} className="logoImage" alt="IceBreaker Logo" />
-            <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
+      <div className={styles.rootContainer}>
+        <form className={styles.form} onSubmit={handleSubmit(processSubmit)}>
+          <div className={styles.interiorContainer}>
+            <img src={Logo} className={styles.logoImage} alt="IceBreaker Logo" />
+            <img src={TextLogo} className={styles.textImage} alt="IceBreaker" />
+            <Typography
+              className={styles.h1}
+              sx={{ marginBottom: 3, marginTop: 6 }}
+            >
               Sign up to start your IceBreaker experience!
             </Typography>
             <TextField
@@ -83,13 +89,13 @@ export default function Register() {
               fullWidth
               size="large"
               loading={submitting}
-              // loadingPosition={'end'}
+              className={styles.button}
               onClick={handleSubmit(processSubmit)}
               sx={{ marginTop: 3, marginBottom: 1 }}
             >
               Register
             </LoadingButton>
-            <Typography className="font1" sx={{ marginRight: 0.8 }}>
+            <Typography className={styles.font1} sx={{ marginRight: 0.8 }}>
               Already registered?
               <Link className="link" to="/login">
                 Login here.
