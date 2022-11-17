@@ -42,7 +42,7 @@ function App() {
     </div>
   ) : (
     <div id="App" className={styles.app}>
-      <MenuBar />
+      <MenuBar firstName={user.firstName} />
       <div id="main-ctn" className={styles.mainCtn}>
         <div className={styles.mainView}>
           {inCall && roomInfo ? (

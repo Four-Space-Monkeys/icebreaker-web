@@ -6,7 +6,7 @@ import styles from './MenuBar.module.scss';
 
 const MENU_ITEMS = ['Home', 'Video', 'Settings', 'Logout'];
 
-function MenuBar() {
+function MenuBar({ firstName }: { firstName: string }) {
   const client = useStytch();
   const [selectedTab, setSelectedTab] = useState('Home');
 
@@ -38,7 +38,7 @@ function MenuBar() {
         ))}
       </div>
       <div id="menuProfile" className={styles.menuProfile}>
-        P
+        {firstName[0].toUpperCase()}
       </div>
     </div>
   );
