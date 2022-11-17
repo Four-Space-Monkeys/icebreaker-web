@@ -8,7 +8,7 @@ const MENU_ITEMS = ['Home', 'Video', 'Settings'];
 function MenuBar() {
   const [selectedTab, setSelectedTab] = useState('Home');
 
-  const tabHandler = (tab: string) => setSelectedTab(tab);
+  const tabHandler = (tab: string) => { setSelectedTab(tab); };
 
   return (
     <div id="menubar" className={styles.menuBar}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Interest } from '../../../types';
 import InterestListItem from './InterestListItem';
+import styles from './queue.module.scss';
 
 function InterestList({
   inQueue,
@@ -25,7 +26,7 @@ function InterestList({
   }
 
   return (
-    <div>
+    <div className={styles.interestList}>
       {interests.map(({ id, name }) => {
         const selected = selectedInterestIds.includes(id);
 

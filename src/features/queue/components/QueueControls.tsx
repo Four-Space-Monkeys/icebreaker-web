@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './queue.module.scss';
 
 function QueueControls({
   inQueue,
@@ -10,7 +11,7 @@ function QueueControls({
   exitQueue: React.MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
-    <div>
+    <div className={styles.queueControlContainer}>
       <button
         type="button"
         disabled={inQueue}
