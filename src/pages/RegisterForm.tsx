@@ -45,18 +45,21 @@ export default function RegisterForm() {
   }, [session?.user_id]);
 
   async function processSubmit(data: FormValues) {
+    console.log('data', data);
     const userData = {
       stytchId: data.stytchId,
       firstName: data.firstName,
       lastName: data.lastName,
       interestIds: data.interestIds.map((id: number) => Number(id)),
     };
+    console.log('userData', userData);
     try {
       const resp = await axios.post('http://localhost:8080/users', {
         userData,
       });
       console.log('Reigstration complete', resp);
-      navigate('/');
+      // navigate('/');
+      window.location.href = '/';
     } catch (err: any) {
       console.log('There was an error', err);
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoCall from '../features/VideoCall/index';
+import VideoCall from '../features/video/index';
 import useAgora from '../hooks/useAgora';
 import { RoomInfo } from '../types';
 
@@ -14,7 +14,11 @@ function VideoCallPage({
 }) {
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    start, setStart, audioTrack, videoTrack, users,
+    start,
+    setStart,
+    audioTrack,
+    videoTrack,
+    users,
   } = useAgora(
     uid,
     roomInfo.channel,

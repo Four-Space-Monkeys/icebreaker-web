@@ -7,6 +7,7 @@ import VideoCallPage from './pages/VideoCallPage';
 import { RoomInfo, User } from './types';
 import QueuePage from './pages/QueuePage';
 import RegisterForm from './pages/RegisterForm';
+import styles from './App.module.scss';
 
 function App() {
   const [user, setUser] = useState<undefined | User>(undefined);
@@ -31,7 +32,7 @@ function App() {
             console.log('response_code', err.response.status);
             setRegisterCheck(true);
           }
-          // throw new Error("couldn't find user");
+          throw new Error("couldn't find user");
         });
     }
   }, [session?.user_id, user]);
@@ -41,24 +42,26 @@ function App() {
       <BarLoader />
     </div>
   ) : (
-    <div id="App" style={{ display: 'flex' }}>
-      <MenuBar uid={user.id} />
-      <div id="main-screen" style={{ flex: 1 }}>
-        {inCall && roomInfo ? (
-          <VideoCallPage
-            uid={user.id}
-            roomInfo={roomInfo}
-            setInCall={setInCall}
-          />
-        ) : (
-          <QueuePage
-            uid={user.id}
-            firstName={user.firstName}
-            interests={user.interests}
-            setRoomInfo={setRoomInfo}
-            setInCall={setInCall}
-          />
-        )}
+    <div id="App" className={styles.app}>
+      <MenuBar />
+      <div id="main-ctn" className={styles.mainCtn}>
+        <div className={styles.mainView}>
+          {inCall && roomInfo ? (
+            <VideoCallPage
+              uid={user.id}
+              roomInfo={roomInfo}
+              setInCall={setInCall}
+            />
+          ) : (
+            <QueuePage
+              uid={user.id}
+              firstName={user.firstName}
+              interests={user.interests}
+              setRoomInfo={setRoomInfo}
+              setInCall={setInCall}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

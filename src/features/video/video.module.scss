@@ -1,0 +1,409 @@
+/************************** Video Call Page *******************************/
+@import '../../assets/stylesheets/globals/media';
+
+$color-primary:#01a389;
+$color-white: #fff;
+$light-grey:#f5f5f5;
+$border-line: rgba(51, 51, 51, 0.1);
+$background-with-opacity: rgba(245, 245, 245, 0.2);
+$border-radius: 10px;
+
+* {
+  // outline: 1px solid $color-primary;
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+}
+
+/******* Video Call *******/
+.videoCtn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 12px;
+  // outline: 10px solid black;
+}
+.videoRoomName {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 0;
+  font-size: 1.5rem;
+  border-bottom: $border-line 2px solid;
+}
+
+.leave {
+  background-color: $light-grey;
+  border-radius: $border-radius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.8rem;
+  > img {
+    filter: invert(55%) sepia(0%) saturate(72%) hue-rotate(229deg) brightness(91%) contrast(83%);
+    height: 1rem;
+    width: 1rem;
+  }
+}
+
+.roomName {
+  font-size: 1rem;
+  font-weight: 600;
+  
+}
+
+.interestBar {
+  font-size: 0.5rem;
+  font-weight: 600;
+  color: darkblue;
+  background-color: lightsteelblue;
+  padding: 0.3rem 0.5rem;
+  border-radius: $border-radius;
+}
+
+.chatData {
+  padding: 0.6em 1rem;
+  display: flex;
+  justify-content: space-between;
+
+  .connectedData {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.2rem;
+    }
+
+  
+    img + span {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    span + span {
+      margin-left: 0.5rem;
+      border-radius: 8px;
+      color: #01a389;
+      background-color: #edfaf8;
+      padding: 0.8rem;
+      width: 1rem;
+      height: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  }
+
+  .addRequest {
+    display: flex;
+    align-items: center;
+    
+    div {
+      background-color: #01a389;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.3rem;
+      border-radius: 5px;
+      margin-right: 0.5rem;
+      img {
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(26deg) brightness(104%) contrast(102%);
+        height: 0.5rem;
+        width: 0.5rem;
+      }
+    }
+    span {
+      font-size: 0.8rem;
+      color: $color-primary;
+    }
+  }
+}
+@include up-to-breakpoint($mobile) {  
+  .chatData {
+    .connectedData {
+      img + span {
+        font-size: 0.6rem;
+      }
+      span + span {
+        font-size: 0.6rem;
+        padding: 0.6rem;
+      }
+    }
+    .addRequest {
+      div {
+        padding: 0.2rem;
+        img {
+          height: 0.4rem;
+          width: 0.4rem;
+        }
+      }
+      span {
+        font-size: 0.6rem;
+      }
+    }
+  }
+}
+/******* Video Main *******/
+.videoMain {
+  > * {
+    color: $light-grey
+  }
+  flex: 1;
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  border-radius: $border-radius;
+  overflow: hidden;
+  &:nth-child(1) {
+    z-index: 1;
+  }
+}
+.noVideoTrack {
+  height: 100%;
+  width: 100%;
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/******* Video Overlay *******/
+.overlays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 2rem;
+}
+
+.userInfo {
+  justify-self: start;
+  display: flex;
+  div {
+    white-space: nowrap;
+  }
+  .userProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    height: 2rem;
+    width: 2rem;
+    border-radius: $border-radius;
+    margin-right: 10px;
+    background-color: $background-with-opacity;
+  }
+
+  .userTitle {
+    font-size: 0.6rem;
+    font-weight: 400;
+  }
+  .userName {
+    font-size: 1.2rem;
+    font-weight: 500;
+
+  }
+}
+
+@include up-to-breakpoint($mobile) {
+   .userProfile {
+    height: 1.5rem;
+    width: 1.5rem;
+   }
+    .userTitle {
+      font-size: 0.4rem;
+    }
+    .userName {
+      font-size: 0.8rem;
+    }
+    
+
+}
+
+.timer {
+  justify-self: center;
+  > div {
+    width: 80px;
+    height: 2rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: $border-radius;
+    background-color: $background-with-opacity;
+    font-size: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}
+/******* SideVideo *******/
+.sideVideo {
+  // justify self to corner
+  justify-self: end;
+  
+  div {
+    border-radius: 2rem;
+  }
+  > div {
+    border: 3px solid $color-white;
+  }
+  .sideVideoPlayer {
+    display: flex;
+    background-color: #a9a9a9;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    .sideVideoOff {
+        background-color: #fc5d5c;
+        padding: 0.5rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+    img {
+      filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(26deg) brightness(104%) contrast(102%);
+      height: 1rem;
+      width: 1rem;
+    }
+  }
+}
+
+@include up-to-breakpoint($mobile) {  
+  .sideVideo {
+    .sideVideoPlayer {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+/******* Footer *******/
+.footer {
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  img {
+    height: 3rem;
+  }
+}
+@include up-to-breakpoint($mobile) {  
+  .footer {
+    img {
+      height: 2rem;
+    }
+  }
+}
+/************************** Controls *******************************/
+
+.controlsCtn {
+  align-self: end;
+  grid-column: 1 / span 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
+  animation: fadeOut 3s;
+  opacity: 0;
+  img {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(26deg) brightness(104%) contrast(102%);
+  }
+  &:hover {
+    opacity: 1;
+    animation: fadeIn 1s;
+  }
+}
+
+.controlsIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transform: scale(1.2);
+  &:hover {
+    background-color: $light-grey;
+  }
+
+  background-color: $background-with-opacity;
+  border-radius: 50%;
+  padding: 0.3rem;
+  img {
+    height: 1rem;
+    width: 1rem;
+  }
+  
+}
+
+.endCall {
+  background-color: #fc5d5c;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 24px;
+
+  &:hover {
+    background-color: hsla(0, 96%, 67%, 0.5);
+  }
+}
+
+@include up-to-breakpoint($mobile) {  
+  .controlsCtn {
+    gap: 12px;
+  }
+  .controlsIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.2rem;
+    img {
+      height: 0.8rem;
+      width: 0.8rem;
+    }
+  }
+  .endCall {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 16px;
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
