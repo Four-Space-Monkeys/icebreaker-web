@@ -100,10 +100,14 @@ function VideoChat({
         )}
         <div id="video-overlays" className={styles.overlays}>
           <div id="video--user-info" className={styles.userInfo}>
-            <div className={styles.userProfile}>H</div>
+            <div className={styles.userProfile}>
+              {roomInfo.matchFirstName[0]}
+            </div>
             <div>
               {/* <div className={styles.userTitle}>Software Engineer</div> */}
-              <div className={styles.userName}>{roomInfo.matchFirstName[0]}</div>
+              <div className={styles.userName}>
+                {roomInfo.matchFirstName}
+              </div>
             </div>
           </div>
           <div id="video--timer" className={styles.timer}>
