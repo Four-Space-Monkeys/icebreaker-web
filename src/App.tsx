@@ -74,11 +74,3 @@ function App() {
 }
 
 export default App;
-
-// return user === undefined ? (
-//   // idk if we should even have this, the user fetch happens so quickly that its just a flash
-//   // i'll leave it for now
-//   <BarLoader />
-// ) : (
-//   registerAuth
-// );
