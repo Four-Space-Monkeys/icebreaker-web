@@ -42,6 +42,9 @@ $logo-bgColor:#e0f4f1;
     gap: 30px;
 }
 
+.menuProfile {
+    color: black;
+}
 @include up-to-breakpoint($mobile) {
     .menuBar {
         flex-direction: row;
