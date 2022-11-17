@@ -23,6 +23,9 @@ export default function MenuItem({
     case 'Settings':
       icons = setting;
       break;
+    case 'Logout':
+      icons = setting;
+      break;
     default:
       icons = home;
   }
