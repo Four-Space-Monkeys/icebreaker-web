@@ -36,6 +36,7 @@ function VideoCallPage({
       videoTrack={videoTrack}
       setInCall={setInCall}
       setStart={setStart}
+      roomInfo={roomInfo}
     />
   );
 }

@@ -14,6 +14,7 @@ import iceBreakerLogo from '../../assets/logos/icebreaker-text-logo.png';
 import styles from './video.module.scss';
 import { useClient } from '../../utils/settings';
 import useCountDown from '../../hooks/useCountdown';
+import { RoomInfo } from '../../types';
 
 // come back for volume control !!!
 
@@ -23,6 +24,7 @@ interface IVideoCallProps {
   videoTrack: ICameraVideoTrack;
   setStart: React.Dispatch<React.SetStateAction<boolean>>;
   setInCall: React.Dispatch<React.SetStateAction<boolean>>;
+  roomInfo: RoomInfo;
 }
 //
 // we can add chat here as well
@@ -32,6 +34,7 @@ function VideoChat({
   videoTrack: localVideoTrack,
   setInCall,
   setStart,
+  roomInfo,
 }: IVideoCallProps) {
   const { videoTrack: userVideoTrack } = users.length > 0 ? users[0] : { videoTrack: null };
   const videoRef = useRef<HTMLDivElement>(null);
@@ -68,7 +71,7 @@ function VideoChat({
           <img src={LeftArrow} alt="back" />
         </button>
         <div className={styles.roomName}>Breaking the Ice</div>
-        <div className={styles.interestBar}>Engineering</div>
+        <div className={styles.interestBar}>{roomInfo.interest}</div>
       </div>
       <div id="video-chat-data" className={styles.chatData}>
         <div className={styles.connectedData}>
@@ -84,16 +87,14 @@ function VideoChat({
         </button>
       </div>
       <div id="video-main" className={styles.videoMain} ref={videoRef}>
-        {!localVideoTrack ? (
+        {userVideoTrack ? (
           <AgoraVideoPlayer
             id="video--local"
-            videoTrack={localVideoTrack}
+            videoTrack={userVideoTrack}
             style={{ width: '100%', height: '100%' }}
           />
         ) : (
-          <div
-            className={styles.noVideoTrack}
-          >
+          <div className={styles.noVideoTrack}>
             No video track: Please allow camera access and try again.
           </div>
         )}
@@ -101,21 +102,22 @@ function VideoChat({
           <div id="video--user-info" className={styles.userInfo}>
             <div className={styles.userProfile}>H</div>
             <div>
-              <div className={styles.userTitle}>Software Engineer</div>
-              <div className={styles.userName}>Heemo Yang</div>
+              {/* <div className={styles.userTitle}>Software Engineer</div> */}
+              <div className={styles.userName}>{roomInfo.matchFirstName[0]}</div>
             </div>
           </div>
           <div id="video--timer" className={styles.timer}>
             <div>
-              {`${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
-
+              {`${minutes.toString().padStart(2, '0')}:${seconds
+                .toString()
+                .padStart(2, '0')}`}
             </div>
           </div>
           <div id="video-side" className={styles.sideVideo}>
-            {userVideoTrack ? (
+            {localVideoTrack ? (
               <AgoraVideoPlayer
                 id="video--client"
-                videoTrack={userVideoTrack}
+                videoTrack={localVideoTrack}
                 className={styles.sideVideoPlayer}
               />
             ) : (
