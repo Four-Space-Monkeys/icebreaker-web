@@ -9,8 +9,8 @@ import { LoadingButton } from '@mui/lab';
 import { Link } from 'react-router-dom';
 
 // Images / Styling
-import styles from '';
 import { Fade } from 'react-awesome-reveal';
+import styles from '../auth.module.scss';
 import Logo from '../../../assets/logos/Logo.png';
 import TextLogo from '../../../assets/logos/icebreaker-text-logo.png';
 
@@ -61,12 +61,12 @@ export default function Login() {
 
   return (
     <Fade direction="left">
-      <div className="rootContainer">
-        <form className="form" onSubmit={handleSubmit(processSubmit)}>
-          <div className="loginContainer">
-            <img src={Logo} className="logoImage" alt="IceBreaker Logo" />
-            <img src={TextLogo} className="textImage" alt="IceBreaker" />
-            <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
+      <div className={styles.rootContainer}>
+        <form className={styles.form} onSubmit={handleSubmit(processSubmit)}>
+          <div className={styles.interiorContainer}>
+            <img src={Logo} className={styles.logoImage} alt="IceBreaker Logo" />
+            <img src={TextLogo} className={styles.textImage} alt="IceBreaker" />
+            <Typography className={styles.h1} sx={{ marginBottom: 3, marginTop: 6 }}>
               Login to IceBreaker
             </Typography>
             <TextField
@@ -112,13 +112,13 @@ export default function Login() {
             >
               Log in with LinkedIn
             </LoadingButton>
-            <Typography className="font1" sx={{ marginRight: 0.8 }}>
+            <Typography className={styles.font1} sx={{ marginRight: 0.8 }}>
               Forgot your password?
               <Link className="link" to="/reset-password">
                 Reset it here
               </Link>
             </Typography>
-            <Typography className="font1" sx={{ marginRight: 0.8 }}>
+            <Typography className={styles.font1} sx={{ marginRight: 0.8 }}>
               Not yet registered?
               <Link className="link" to="/register">
                 Sign up
