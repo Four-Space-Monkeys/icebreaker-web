@@ -1,8 +1,11 @@
-# Getting Started with Create React App
+![icebreaker-text-logo](https://user-images.githubusercontent.com/90360306/202524365-4800f8d4-1e7d-4a51-a4e1-01a9d8606638.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Description
+
+IceBreaker is a video chat application for professionals, providing an environment for professionals to meet and discuss their industry interests. 
+
+## Start Up
 
 In the project directory, you can run:
 
@@ -39,8 +42,33 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Tech Stack
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Team Links
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<table>
+  <tr>
+    <th>Heemo</th>
+    <th>Peter</th>
+    <th>Cornelius</th>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/heemo521">
+        <img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    </td>
+    <td>
+      <a href="https://github.com/GitPeteM">
+        <img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/corneliusrenken">
+        <img src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/>
+      </a>
+    </td>
+  </tr>
+</table>
