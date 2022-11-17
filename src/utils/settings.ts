@@ -1,6 +1,10 @@
 import { ClientConfig, createClient, createMicrophoneAndCameraTracks } from 'agora-rtc-react';
 
-export const appId = 'fe44932382c4452a8e692e262df2ea63';
+// if (!process.env.AGORA_APP_ID) {
+//   throw new Error('Please provide an Agora App ID in the .env file.');
+// }
+
+export const appId = 'fa323ca5d3424215b779d506b86db346';
 
 export const config: ClientConfig = {
   mode: 'rtc',
