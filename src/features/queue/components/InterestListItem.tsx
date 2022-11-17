@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import styles from './queue.module.scss';
 
 function InterestListItem({
   name,
@@ -13,8 +14,7 @@ function InterestListItem({
 }) {
   return (
     <div
-      className={selected ? 'interest-list-item-selected' : 'interest-list-item'}
-      style={selected ? { color: 'red' } : { color: 'black' }}
+      className={selected ? styles.selected : styles.unselected}
       onClick={onClick}
     >
       {name}
