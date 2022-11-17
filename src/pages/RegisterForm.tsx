@@ -7,7 +7,7 @@ import { useStytchSession } from '@stytch/react';
 // import { useNavigate } from 'react-router-dom';
 // images / Styles
 import { Fade } from 'react-awesome-reveal';
-import styles from '../features/AuthStack/auth.module.scss';
+import styles from '../features/AuthStack/Auth.module.scss';
 import Logo from '../assets/logos/Logo.png';
 import TextLogo from '../assets/logos/icebreaker-text-logo.png';
 
