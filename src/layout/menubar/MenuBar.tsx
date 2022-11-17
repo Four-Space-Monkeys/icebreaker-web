@@ -7,6 +7,7 @@ const MENU_ITEMS = ['Home', 'Video', 'Settings'];
 
 function MenuBar() {
   const [selectedTab, setSelectedTab] = useState('Home');
+
   const tabHandler = (tab: string) => setSelectedTab(tab);
 
   return (
@@ -25,7 +26,6 @@ function MenuBar() {
         ))}
       </div>
       <div id="menuProfile" className={styles.menuProfile}>
-        {/* {uid} */}
         P
       </div>
     </div>

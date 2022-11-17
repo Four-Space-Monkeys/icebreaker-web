@@ -12,6 +12,7 @@ import add from '../../assets/icons/add_FILL0_wght400_GRAD0_opsz48.svg';
 import group from '../../assets/icons/group_FILL0_wght400_GRAD0_opsz48.svg';
 import styles from './video.module.scss';
 import { useClient } from '../../utils/settings';
+import useCountDown from '../../hooks/useCountdown';
 
 // come back for volume control !!!
 
@@ -34,6 +35,7 @@ function VideoChat({
   const { videoTrack: userVideoTrack } = users.length > 0 ? users[0] : { videoTrack: null };
   const videoRef = useRef<HTMLDivElement>(null);
   const client = useClient();
+  const [minutes, seconds] = useCountDown(300);
 
   const leaveChannel = async () => {
     await client.leave();
@@ -58,9 +60,7 @@ function VideoChat({
         >
           <img src={LeftArrow} alt="back" />
         </button>
-        <div className={styles.roomName}>
-          Breaking the Ice
-        </div>
+        <div className={styles.roomName}>Breaking the Ice</div>
         <div className={styles.interestBar}>Engineering</div>
       </div>
       <div id="video-chat-data" className={styles.chatData}>
@@ -77,7 +77,7 @@ function VideoChat({
         </button>
       </div>
       <div id="video-main" className={styles.videoMain} ref={videoRef}>
-        {localVideoTrack ? (
+        {!localVideoTrack ? (
           <AgoraVideoPlayer
             id="video--local"
             videoTrack={localVideoTrack}
@@ -95,7 +95,7 @@ function VideoChat({
               alignItems: 'center',
             }}
           >
-            No video track
+            No video track: Please allow camera access and try again.
           </div>
         )}
         <div id="video-overlays" className={styles.overlays}>
@@ -107,7 +107,7 @@ function VideoChat({
             </div>
           </div>
           <div id="video--timer" className={styles.timer}>
-            <div>00:00</div>
+            <div>{`${minutes}:${seconds}`}</div>
           </div>
           <div id="video-side" className={styles.sideVideo}>
             {userVideoTrack ? (

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useStytch } from '@stytch/react';
 import { TextField, Typography } from '@mui/material';
@@ -10,12 +10,10 @@ import { Fade } from 'react-awesome-reveal';
 import Logo from '../../../assets/logos/IBLogo.png';
 
 type FormValues = {
-  email: string;
   password: string;
 };
 
-export default function Register() {
-  const [submitting, setSubmitting] = useState(false);
+export default function NewPassword() {
   const stytchClient = useStytch();
   const {
     register,
@@ -23,47 +21,32 @@ export default function Register() {
     formState: { errors },
   } = useForm<FormValues>();
 
-  async function processSubmit(data: FormValues) {
-    const email = data.email.toLowerCase();
-    const { password } = data;
-
-    setSubmitting(true);
-    try {
-      const resp = await stytchClient.passwords.create({
-        email,
-        password,
-        session_duration_minutes: 1000,
-      });
-      console.log('You registered successfully', resp);
-    } catch (err: any) {
-      if (err.error_type === 'duplicate_email') {
-        alert('Sorry, this email already exists.');
-      }
-      console.log('There was an Error', err);
-    }
-    setSubmitting(false);
+  const token = new URLSearchParams(window.location.search).get('token');
+  if (token === null) {
+    throw new Error('Token not found');
   }
 
+  const resetPassword = useCallback(
+    (data: FormValues) => {
+      const { password } = data;
+      stytchClient.passwords.resetByEmail({
+        token,
+        password,
+        session_duration_minutes: 360,
+      });
+    },
+    [stytchClient, token],
+  );
+
   return (
-    <Fade direction="down">
+    <Fade>
       <div className="rootContainer">
-        <form className="form" onSubmit={handleSubmit(processSubmit)}>
+        <form className="form" onSubmit={handleSubmit(resetPassword)}>
           <div className="registerContainer">
             <img src={Logo} className="logoImage" alt="IceBreaker Logo" />
             <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
-              Sign up to start your IceBreaker experience!
+              Reset Your Password
             </Typography>
-            <TextField
-              error={!!errors.email}
-              label="Email"
-              fullWidth
-              size="small"
-              {...register('email', {
-                required: true,
-                pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-              })}
-              sx={{ marginBottom: 2 }}
-            />
             <TextField
               error={!!errors.password}
               label="Password"
@@ -76,21 +59,18 @@ export default function Register() {
               })}
               helperText="Minimum 8 characters, 1 lowercase, 1 uppercase and 1 number."
             />
-
             <input type="submit" style={{ display: 'none' }} />
             <LoadingButton
               variant="contained"
               fullWidth
               size="large"
-              loading={submitting}
-              // loadingPosition={'end'}
-              onClick={handleSubmit(processSubmit)}
+              onClick={handleSubmit(resetPassword)}
               sx={{ marginTop: 3, marginBottom: 1 }}
             >
-              Register
+              Submit New Password
             </LoadingButton>
             <Typography className="font1" sx={{ marginRight: 0.8 }}>
-              Already registered?
+              Remember your password?
               <Link className="link" to="/login">
                 Login here.
               </Link>

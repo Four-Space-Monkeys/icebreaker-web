@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useStytch } from '@stytch/react';
-// import { OAuthProviders } from '@stytch/vanilla-js';
-// import { StytchLogin } from '@stytch/react';
 
 // Components
 import { Typography, TextField } from '@mui/material';
@@ -40,7 +38,13 @@ export default function Login() {
         session_duration_minutes: 1000,
       });
       console.log('You logged in successfully', resp);
-    } catch (err) {
+    } catch (err: any) {
+      if (err.error_type === 404) {
+        alert('Email not found, please create an account.');
+      }
+      if (err.status_code === 401) {
+        alert('Sorry, the password was incorrect.');
+      }
       console.log('There was an Error', err);
     }
     setSubmitting(false);
@@ -59,7 +63,7 @@ export default function Login() {
       <div className="rootContainer">
         <form className="form" onSubmit={handleSubmit(processSubmit)}>
           <div className="loginContainer">
-            <img src={Logo} className="logoImage" alt="Ice Breaker" />
+            <img src={Logo} className="logoImage" alt="IceBreaker Logo" />
             <Typography className="h1" sx={{ marginBottom: 3, marginTop: 6 }}>
               Login to Ice Breaker
             </Typography>
@@ -119,7 +123,7 @@ export default function Login() {
               </Link>
             </Typography>
           </div>
-          <Typography sx={{ marginTop: 1 }}>Powered by Ice Breaker</Typography>
+          <Typography sx={{ marginTop: 1 }}>Powered by IceBreaker</Typography>
         </form>
       </div>
     </Fade>
