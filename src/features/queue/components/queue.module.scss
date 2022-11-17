@@ -1,0 +1,61 @@
+$color-primary:#01a389;
+$logo-bgColor:#e0f4f1;
+$logo-color: #BFC5CF;
+.queueContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.interestList {
+  // set even child background as primary color
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    div {
+        cursor: pointer;
+        background-color: $logo-color;
+        border-radius: 10px;
+        padding: 0.5rem;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+        outline: 1px solid $logo-color;
+        &:nth-child(2n + 1) {
+            background-color: $color-primary;
+            color: #ffffff;
+        }
+        &:nth-child(2n + 2) {
+            background-color: $logo-bgColor;
+        }
+      
+    }
+    .selected {
+        //highlight selected box
+        box-shadow: 0 0 5px 5px rgba(36, 49, 26, 0.695);
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        outline:rgba(0, 0, 0, 0.2) 1px solid;
+        transform: scale(1.1);
+    }
+}
+
+.queueControlContainer {
+    display: flex;
+    gap: 1rem;
+    button {
+        border-radius: 10px;
+        padding: 0.5rem;
+        margin: 2rem 0;
+        cursor: pointer;
+        background-color: $logo-bgColor;
+        color: black;
+        border: 1px solid black;
+        &:disabled {
+            background-color: $logo-color;
+            color: #ffffff;
+            border: 1px solid $logo-color;
+            cursor: not-allowed;
+        }
+    }
+}

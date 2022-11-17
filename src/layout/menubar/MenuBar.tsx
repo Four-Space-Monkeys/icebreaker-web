@@ -20,7 +20,7 @@ function MenuBar() {
     }
   }, [client.session, selectedTab]);
 
-  const tabHandler = (tab: string) => setSelectedTab(tab);
+  const tabHandler = (tab: string) => { setSelectedTab(tab); };
 
   return (
     <div id="menubar" className={styles.menuBar}>

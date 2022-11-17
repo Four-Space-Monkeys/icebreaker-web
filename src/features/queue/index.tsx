@@ -4,6 +4,7 @@ import { io, Socket } from 'socket.io-client';
 import { Interest, RoomInfo } from '../../types';
 import InterestList from './components/InterestList';
 import QueueControls from './components/QueueControls';
+import styles from './components/queue.module.scss';
 
 let socket: Socket | undefined;
 
@@ -70,7 +71,7 @@ function Queue({
   }
 
   return (
-    <div>
+    <div className={styles.queueContainer}>
       <InterestList
         inQueue={inQueue}
         interests={interests}
